@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+out/
+results/
+build/
+dist/
+*.so
+*.o
+*.bin
