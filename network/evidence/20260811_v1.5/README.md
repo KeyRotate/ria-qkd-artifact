@@ -34,3 +34,7 @@ server wall-clock record.
 `network/summarize_network_evidence.py`. The aggregate values in the paper
 are the pooled post-warmup client samples; the per-run range remains available
 in `SUMMARY.json`.
+
+The server-side wall-clock record is archived in each `server.json`. The
+raw terminal stdout logs are not archived (they are gitignored); the recorded
+`server.json` captures the same completed-count and wall-clock information.
