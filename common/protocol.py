@@ -151,7 +151,7 @@ class RIAQKDClient:
 
 
 class RIAQKDServer:
-    def __init__(self, master_key: bytes, signature_keys: Optional[Tuple[bytes, bytes]] = None, enrolled_clients: Optional[dict[str, bytes]] = None, server_id: bytes = b"RIA-QKD-GW"):
+    def __init__(self, master_key: bytes = None, signature_keys: Optional[Tuple[bytes, bytes]] = None, enrolled_clients: Optional[dict[str, bytes]] = None, server_id: bytes = b"RIA-QKD-GW"):
         self.master_key = master_key
         self.kem = MLKEMWrapper("ML-KEM-512")
         self.sig = MLDSAWrapper("ML-DSA-44")
@@ -187,7 +187,10 @@ class RIAQKDServer:
         msg_bytes = msg.to_bytes()
         self.transcript.append(msg_bytes)
         self.stats["bytes_received"] += len(msg_bytes)
-        app_key = derive_application_key(self.master_key, client_id, epoch=epoch)
+        if self.master_key is not None:
+            app_key = derive_application_key(self.master_key, client_id, epoch=epoch)
+        else:
+            app_key = derive_demo_application_key(client_id)
         self.pk_server_eph, self.sk_server_eph = self.kem.keygen()
         k1, ct_static = self.kem.encapsulate(pk_client_static)
         k2, ct_ephemeral = self.kem.encapsulate(pk_client_eph)

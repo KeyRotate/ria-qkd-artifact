@@ -20,13 +20,14 @@ def mtls_client_path(iterations: int) -> float:
     """mTLS-PQC client cost: verify server cert signature, sign client auth,
     decapsulate the key-exchange ciphertext."""
     total = 0.0
-    with oqs.Signature(SIG_ALG) as sig:
-        srv_pk = sig.generate_keypair()
-        srv_sk = sig.export_secret_key()
-        cli_pk = sig.generate_keypair()
-        cli_sk = sig.export_secret_key()
+    with oqs.Signature(SIG_ALG) as server_sig:
+        srv_pk = server_sig.generate_keypair()
+        srv_sk = server_sig.export_secret_key()
         cert_msg = b"server-certificate"
-        cert_sig = sig.sign(cert_msg)
+        cert_sig = server_sig.sign(cert_msg)
+    with oqs.Signature(SIG_ALG) as client_sig:
+        cli_pk = client_sig.generate_keypair()
+        cli_sk = client_sig.export_secret_key()
     with oqs.KeyEncapsulation(KEM_ALG) as kem:
         eph_pk = kem.generate_keypair()
         eph_sk = kem.export_secret_key()
@@ -37,7 +38,7 @@ def mtls_client_path(iterations: int) -> float:
     try:
         for _ in range(iterations):
             t0 = time.perf_counter()
-            verifier.verify(cert_msg, cert_sig, srv_pk)
+            assert verifier.verify(cert_msg, cert_sig, srv_pk)
             client_signer.sign(b"client-auth")
             kdec.decap_secret(ct)
             total += time.perf_counter() - t0

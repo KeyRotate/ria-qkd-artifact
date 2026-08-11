@@ -89,7 +89,7 @@ def server_worker(conn: socket.socket, hs_per_client: int, ctx: ServerContext, r
                 ct2, ss2 = kem.encap_secret(cli_eph_pk)
                 srv_eph_pk = kem.generate_keypair()
                 srv_eph_sk = kem.export_secret_key()
-            transcript = hashlib.sha256(b"RIA-QKD-V1-Server" + SERVER_ID + cli_id + epoch + r_c + cli_eph_pk + srv_eph_pk + ct1 + ct2).digest()
+            transcript = hashlib.sha256(b"RIA-QKD-V1-Server" + SERVER_ID + struct.pack(">H", len(cli_id)) + cli_id + epoch + r_c + cli_eph_pk + srv_eph_pk + ct1 + ct2).digest()
             with oqs.Signature(SIG_ALG, ctx.srv_sk) as signer:
                 sig = signer.sign(transcript)
             m2 = struct.pack(">H", len(srv_eph_pk)) + srv_eph_pk + struct.pack(">H", len(ct1)) + ct1 + struct.pack(">H", len(ct2)) + ct2 + struct.pack(">H", len(sig)) + sig
@@ -209,7 +209,7 @@ def client_worker(server_ip: str, port: int, hs_per_client: int, client_index: i
         sig_len = struct.unpack(">H", m2[off:off + 2])[0]
         off += 2
         sig = m2[off:off + sig_len]
-        transcript = hashlib.sha256(b"RIA-QKD-V1-Server" + SERVER_ID + client_id + EPOCH + rc + pk_eph + srv_eph_pk + ct1 + ct2).digest()
+        transcript = hashlib.sha256(b"RIA-QKD-V1-Server" + SERVER_ID + struct.pack(">H", len(client_id)) + client_id + EPOCH + rc + pk_eph + srv_eph_pk + ct1 + ct2).digest()
         if not oqs.Signature(SIG_ALG).verify(transcript, sig, server_sig_pk):
             send_msg(s, b"FAIL")
             errors += 1

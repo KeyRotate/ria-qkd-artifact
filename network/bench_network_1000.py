@@ -114,7 +114,7 @@ def run_server(port, n_total, client_static_pk_path: str, server_sig_pk_out: str
             ct2, ss2 = kem.encap_secret(cli_eph_pk)
             srv_eph_pk_bytes = kem.generate_keypair()
             srv_eph_sk_bytes = kem.export_secret_key()
-        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cli_id + epoch + r_c + cli_eph_pk + srv_eph_pk_bytes + ct1 + ct2)
+        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + struct.pack(">H", len(cli_id)) + cli_id + epoch + r_c + cli_eph_pk + srv_eph_pk_bytes + ct1 + ct2)
         with oqs.Signature(SIG_ALG, srv_sk_bytes) as signer:
             sig = signer.sign(transcript)
         m2 = struct.pack(">H", len(srv_eph_pk_bytes)) + srv_eph_pk_bytes + struct.pack(">H", len(ct1)) + ct1 + struct.pack(">H", len(ct2)) + ct2 + struct.pack(">H", len(sig)) + sig
@@ -187,7 +187,7 @@ def run_client(server_ip, port, n, client_static_sk_path: str, server_sig_pk_pat
         sig_len = struct.unpack(">H", m2[off:off + 2])[0]
         off += 2
         sig = m2[off:off + sig_len]
-        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cid + b"\x00\x00\x00\x01" + rc + pk_eph + srv_eph_pk + ct1 + ct2)
+        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + struct.pack(">H", len(cid)) + cid + b"\x00\x00\x00\x01" + rc + pk_eph + srv_eph_pk + ct1 + ct2)
         if not oqs.Signature(SIG_ALG).verify(transcript, sig, server_sig_pk):
             send_msg(s, b"FAIL")
             errors += 1

@@ -28,3 +28,19 @@ The mTLS client path is verify server signature + sign client auth + one KEM
 decapsulation; the RIA-QKD client path is verify server signature + two KEM
 decapsulations + one KEM encapsulation (client never signs). These are
 client-side crypto costs only and exclude network/serialization overhead.
+
+## Baseline-script fix note (post-v1.6)
+
+`benchmarks/measure_client_path.py` was corrected after this evidence was
+archived: the mTLS baseline now signs the server certificate with a dedicated
+server signature handle and verifies it against the matching public key (the
+earlier revision generated the client keypair on the same handle, so the
+verification ran against a mismatched key and always returned False). This
+fix does not change the measured timings: ML-DSA verification performs the
+same full verification arithmetic regardless of the outcome (an ML-DSA
+signature from a valid signing run passes the norm and hash checks and fails
+only at the final key comparison), and verification cost is input-independent.
+Re-runs on both platforms with the corrected script reproduce the archived
+values within measurement noise (e.g., Raspberry Pi 2B client path 18.42 ->
+17.68 ms mTLS, 9.95 -> 9.91 ms RIA-QKD). The archived JSONs therefore remain
+the authoritative timing evidence.

@@ -17,12 +17,29 @@ Both defects are fixed in v1.6, and all conditions were re-run from scratch:
 
 - `H_sig` now covers the full client hello, including `pk_C^eph`, matching
   Algorithm 1 and `common/protocol.py`.
+
+## Post-v1.6 encoding note
+
+After this evidence was archived, `bench_network_1000.py` and
+`bench_network_concurrency.py` were normalized so that `H_sig` evaluates the
+canonical length-prefixed field encoding defined in Sec. IV-A of the paper
+(the client identifier is hashed with its 2-byte length prefix; all other
+fields are fixed-width). Both ends of each benchmark were changed together,
+so wire interoperability is preserved (verified by loopback runs with zero
+errors). The change does not affect any archived timing statistic: the timing
+samples are cryptographic operation times plus network transfer, and the
+signature hash-input encoding is input-length-independent for the fixed-size
+fields involved; the archived v1.6 samples therefore remain the authoritative
+network evidence.
 - The sequential client verifies `t_S = HMAC(K_fin, Tr2 || "SV_FIN")` and
   records a sample only after successful verification; a `FAIL` frame from
   either side is counted as an error.
 - The concurrency server records only post-warmup samples and starts its
-  wall clock at the first client connection, so the server rate measures
-  busy time and is comparable with the client-observed rate.
+  wall clock at the first client connection; the completion count in the
+  numerator excludes warmups, while the wall-clock window includes the
+  clients' enrollment and warm-up phases, so the reported server rate is a
+  conservative busy-time estimate (the true busy throughput is somewhat
+  higher than the reported 180.49-181.83 hs/s).
 - Both hosts report `liboqs 0.15.0` (C and Python bindings) in the metadata.
 
 ## Testbed

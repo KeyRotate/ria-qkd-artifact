@@ -188,7 +188,10 @@ Expected values:
 - pooled mean latency over 3 x 800 samples: `66.960 ms`
 - pooled p99 latency: `88.011 ms`
 - client-observed completion rate: about `176.97 hs/s`
-- server wall-clock rate (measured from first connection): about `181.09 hs/s`
+- server wall-clock rate (measured from the first client connection; the
+  window includes the clients' enrollment and warm-up phases while the
+  completion count excludes warmups, so the rate is conservative): about
+  `181.09 hs/s`
 - Each concurrent client uses a distinct provisioned static key and anchor;
   the server and client must receive the same per-client material directory.
 
