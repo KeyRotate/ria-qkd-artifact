@@ -24,7 +24,12 @@ primitive measurements reported in Section V-D / Table III of the paper.
 - `evidence/benchmark/` - per-operation primitive results
   (`results_energy.txt` is the canonical source: ML-KEM-512 decap 881,252
   cycles = 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 17.0M cycles = 101.3 ms /
-  ~53.4 mJ; `results.txt` is an earlier, superseded provenance pass).
+  ~53.4 mJ; `results.txt` is an earlier, superseded provenance pass whose
+  differing cycle counts and rejection-sampling statistics are retained only
+  for provenance; the source record did not preserve the cause of the
+  differences). The canonical decap value is an isolated-operation result;
+  the separate back-to-back block cross-check (2.616 mJ/op) is an aggregate
+  measurement and is not used in the manuscript.
 - `evidence/benchmark/archive/` - `m4bench_evidence.tar.gz` (the full
   benchmark workspace: the pqm4/PQClean ML-KEM-512 and ML-DSA-44 sources under
   `m4bench/pqc/`, the benchmark firmware `m4bench/src/`, build scripts, the

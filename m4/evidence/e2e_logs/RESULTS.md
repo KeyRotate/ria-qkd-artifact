@@ -20,7 +20,11 @@ handling was hardened for unattended re-runs):
   - Server: Python + liboqs ML-KEM-512 / ML-DSA-44 (NUC)
   - Client crypto: pqm4 ML-KEM-512 (decap x2 + encap x1), ML-DSA-44 verify, SHA-256/HKDF/HMAC
 
-Interop: All 3 negotiated shared secrets (ss1/ss2/ss3) byte-match liboqs.
+Interop: The archived 2026-08-07 server run records successful Finished-tag
+verification. The implementation was cross-checked against liboqs during the
+original interoperability setup, but no standalone ss1/ss2/ss3 comparison
+file is included in this artifact; the claim is therefore not independently
+recomputed from the archived files.
 Root-cause fix: M4 HKDF info used 9-byte "finished\0"; fixed to 8-byte "finished".
 
 End-to-end handshake over public WAN:

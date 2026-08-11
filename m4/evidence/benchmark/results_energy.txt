@@ -14,3 +14,12 @@ Energy per operation (cycle-loop, PA5-bounded, 100kHz sampling):
 Cross-check (back-to-back energy blocks):
   decap block 200x: total 523199 uJ -> 2616 uJ/op
   sign block   20x: total 1057377 uJ -> 52869 uJ/op
+
+Interpretation note:
+  The canonical values above come from isolated, PA5-bounded operation
+  windows. The block values are aggregate measurements over repeated
+  operations and their surrounding loop/marker/measurement interval; they
+  are not directly interchangeable with isolated-operation values. The source
+  run did not record a decomposition of the 20.7% decapsulation difference,
+  so the manuscript uses only the isolated-operation values (2.17 mJ and
+  53.4 mJ). Both measurements are retained for provenance.

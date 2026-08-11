@@ -11,3 +11,10 @@ ML-DSA-44 signing (mTLS-PQC client):
   min = 5,777,009 cycles = 34.4 ms (typical)
   avg = 19,691,509 cycles = 117.2 ms (includes rejection-sampling outliers)
   max = 105,626,609 cycles (single extreme rejection case)
+
+PROVENANCE NOTE:
+  This file is an earlier benchmark pass and is retained for provenance only;
+  it is not the canonical source and none of its values are used in the
+  manuscript. It differs from results_energy.txt (including the decapsulation
+  count and ML-DSA rejection-sampling statistics); the source record did not
+  preserve the cause of those differences.
