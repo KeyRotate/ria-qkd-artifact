@@ -1,0 +1,16 @@
+STM32F407 168MHz (PLL HSE 8MHz) energy measurements via PPK2
+Device: STM32F407G-DISC1 MB997E, Cortex-M4 r0p1, 168MHz, 3.3V
+Firmware: ml-kem-512 + ml-dsa-44, dec_ok=1 sign_ok=1 done=1
+
+Cycle counts (DWT, clock-independent):
+  ML-KEM-512 decap: min=max=avg=881252 cycles = 5.245ms @168MHz
+  ML-DSA-44 sign:  min=5852905 (34.8ms) avg=17012720 (101.3ms) max=54650113 (325.3ms)
+
+Energy per operation (cycle-loop, PA5-bounded, 100kHz sampling):
+  ML-KEM-512 decap: 20 samples, avg dur 5.25ms, avg I 125.2mA, E=2168 uJ (2.17 mJ)
+  ML-DSA-44 sign:   22 samples, avg E=53418 uJ (53.4 mJ), range 16091-156428 uJ
+                    avg I ~145mA
+
+Cross-check (back-to-back energy blocks):
+  decap block 200x: total 523199 uJ -> 2616 uJ/op
+  sign block   20x: total 1057377 uJ -> 52869 uJ/op

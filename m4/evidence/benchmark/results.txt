@@ -1,0 +1,13 @@
+STM32F407VGT6 (Cortex-M4F @ 168 MHz) operation-level benchmark
+Board: STM32F407G-DISC1 MB997 E-01, SN 52FF72067866565132082467
+Hardware: pqm4 ml-kem-512/m4fstack + ml-dsa-44/m4fstack, DWT/CYCCNT, -O2
+N=20 iterations
+
+ML-KEM-512 decapsulation (RIA-QKD client):
+  min = 866,077 cycles = 5.155 ms
+  (stable, min==max over 20 runs)
+
+ML-DSA-44 signing (mTLS-PQC client):
+  min = 5,777,009 cycles = 34.4 ms (typical)
+  avg = 19,691,509 cycles = 117.2 ms (includes rejection-sampling outliers)
+  max = 105,626,609 cycles (single extreme rejection case)
