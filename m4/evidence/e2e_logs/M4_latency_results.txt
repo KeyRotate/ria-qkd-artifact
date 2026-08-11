@@ -2,4 +2,4 @@ M4-side full-handshake latency (DWT cycles, accepted=1, from relay-captured resu
   905.3 ms, 955.3 ms, 986.7 ms, 1082.0 ms, 1671.8 ms, 4360.9 ms
 Server-side latency (authoritative, N=30 successful handshakes):
   min 635.4 ms, median 4672.2 ms, mean 5075.9 ms, p90 9635.1 ms, p95 9641.4 ms, max 9672.0 ms
-Success: 30/30 server handshakes OK (CL_FIN verified); shared secrets byte-match liboqs.
+Success: 30/30 server handshakes OK (CL_FIN verified). A liboqs cross-check was performed during setup; no standalone ss1/ss2/ss3 comparison is archived.

@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import datetime
 import hashlib
 import json
 import math
 import os
+import platform
 import socket
 import statistics
 import struct
@@ -65,7 +67,17 @@ def percentile(sorted_values, p):
     return sorted_values[idx]
 
 
-def run_server(port, n_total, client_static_pk_path: str, server_sig_pk_out: str = "", anchor_path: str = ""):
+def runtime_metadata(role: str):
+    return {
+        "role": role,
+        "hostname": socket.gethostname(),
+        "python": platform.python_version(),
+        "argv": list(sys.argv),
+        "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+
+
+def run_server(port, n_total, client_static_pk_path: str, server_sig_pk_out: str = "", anchor_path: str = "", output_path: str = ""):
     with oqs.Signature(SIG_ALG) as signer:
         srv_pk = signer.generate_keypair()
         srv_sk_bytes = signer.export_secret_key()
@@ -116,8 +128,22 @@ def run_server(port, n_total, client_static_pk_path: str, server_sig_pk_out: str
         tr2 = hash_transcript(tr + m3)
         send_msg(conn, HMACWrapper.compute(k_fin, tr2 + b"SV_FIN"))
         completed += 1
+    wall_time = time.perf_counter() - t_start
+    result = {
+        "protocol": "RIA-QKD",
+        "role": "server",
+        "expected_handshakes": n_total,
+        "completed": completed,
+        "wall_time_s": round(wall_time, 3),
+        "throughput_hs": round(completed / wall_time, 2) if wall_time else 0.0,
+        "metadata": runtime_metadata("server"),
+    }
     conn.close()
-    print(json.dumps({"completed": completed, "wall_time_s": round(time.perf_counter() - t_start, 3)}, indent=2))
+    if output_path:
+        out = Path(output_path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, indent=2) + "\n")
+    print(json.dumps(result, indent=2))
 
 
 def run_client(server_ip, port, n, client_static_sk_path: str, server_sig_pk_path: str, anchor_path: str = "", label: str = "default", output_path: str | None = None):
@@ -184,8 +210,10 @@ def run_client(server_ip, port, n, client_static_sk_path: str, server_sig_pk_pat
             "median": round(statistics.median(latencies), 3),
             "p95": round(percentile(latencies, 0.95), 3),
             "p99": round(percentile(latencies, 0.99), 3),
+            "samples": [round(value, 6) for value in latencies],
         },
         "throughput_hs": round(1000.0 / statistics.mean(latencies), 2),
+        "metadata": runtime_metadata("client"),
     }
     out = Path(output_path or "out/network_bench_1000.json")
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -210,7 +238,7 @@ if __name__ == "__main__":
     if args.mode == "server":
         if not args.client_static_pk:
             raise SystemExit("--client-static-pk is required in server mode")
-        run_server(args.port, args.n + N_WARMUP, args.client_static_pk, server_sig_pk_out=args.server_sig_pk_out, anchor_path=args.anchor)
+        run_server(args.port, args.n + N_WARMUP, args.client_static_pk, server_sig_pk_out=args.server_sig_pk_out, anchor_path=args.anchor, output_path=args.output)
     else:
         if not args.server_ip:
             raise SystemExit("--server-ip is required in client mode")

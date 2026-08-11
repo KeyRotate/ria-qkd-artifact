@@ -5,11 +5,13 @@ from __future__ import annotations
 
 import argparse
 import base64
+import datetime
 import hashlib
 import hmac
 import json
 import math
 import os
+import platform
 import socket
 import statistics
 import struct
@@ -27,6 +29,16 @@ except ImportError:
 KEM_ALG = "ML-KEM-512"
 PROTO_ID = b"KEMTLS-full-v1"
 N_WARMUP = 20
+
+
+def runtime_metadata(role: str):
+    return {
+        "role": role,
+        "hostname": socket.gethostname(),
+        "python": platform.python_version(),
+        "argv": list(sys.argv),
+        "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
 
 
 def hkdf_extract(salt, ikm):
@@ -144,7 +156,7 @@ def load_trust_store(path):
     }
 
 
-def run_server(port, n_total, trust_store_out: str = ""):
+def run_server(port, n_total, trust_store_out: str = "", output_path: str = ""):
     with oqs.KeyEncapsulation(KEM_ALG) as kem:
         srv_pk = kem.generate_keypair()
         srv_sk = kem.export_secret_key()
@@ -213,7 +225,21 @@ def run_server(port, n_total, trust_store_out: str = ""):
             break
 
     elapsed = time.perf_counter() - t_start
+    result = {
+        "protocol": "KEMTLS-full",
+        "role": "server",
+        "expected_handshakes": n_total,
+        "completed": completed,
+        "wall_time_s": round(elapsed, 3),
+        "throughput_hs": round(completed / elapsed, 2) if elapsed else 0.0,
+        "metadata": runtime_metadata("server"),
+    }
+    if output_path:
+        out = Path(output_path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, indent=2) + "\n")
     print(f"[Server] {completed}/{n_total} handshakes in {elapsed:.2f}s = {completed/elapsed:.1f} hs/s")
+    print(json.dumps(result, indent=2))
     conn.close()
     srv.close()
 
@@ -341,9 +367,11 @@ def run_client(server_ip, port, n_total, trust_store_path, label="default", outp
             "median": round(median_ms, 3),
             "p95": round(p95_ms, 3),
             "p99": round(p99_ms, 3),
+            "samples": [round(value / 1e6, 6) for value in sorted_latencies],
         },
         "throughput_hs": round(1000.0 / mean_ms, 2),
         "payload_bytes": payload_sizes,
+        "metadata": runtime_metadata("client"),
     }
     print(json.dumps(result, indent=2))
 
@@ -363,10 +391,11 @@ if __name__ == "__main__":
     ap.add_argument("--output", default="")
     ap.add_argument("--trust-store", default="")
     ap.add_argument("--trust-store-out", default="")
+    ap.add_argument("--server-output", default="out/network_kemtls_full_1000_server.json")
     args = ap.parse_args()
 
     if args.mode == "server":
-        run_server(args.port, args.n + N_WARMUP, args.trust_store_out)
+        run_server(args.port, args.n + N_WARMUP, args.trust_store_out, args.server_output)
     else:
         if not args.server_ip:
             raise SystemExit("--server-ip is required in client mode")

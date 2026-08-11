@@ -1,0 +1,27 @@
+{
+  "protocol": "KEMTLS-full",
+  "role": "server",
+  "expected_handshakes": 1020,
+  "completed": 1020,
+  "wall_time_s": 9.527,
+  "throughput_hs": 107.07,
+  "metadata": {
+    "role": "server",
+    "hostname": "nuc",
+    "python": "3.12.3",
+    "argv": [
+      "network/bench_network_kemtls_full_1000.py",
+      "--mode",
+      "server",
+      "--port",
+      "21013",
+      "--n",
+      "1000",
+      "--trust-store-out",
+      "<SERVER_PROVISION_DIR>/kemtls2_trust.json",
+      "--server-output",
+      "network/evidence/20260811_v1.5/run2_kemtls/server.json"
+    ],
+    "timestamp_utc": "2026-08-11T09:52:06.588105+00:00"
+  }
+}

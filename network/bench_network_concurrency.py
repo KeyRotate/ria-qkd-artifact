@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import oqs
 
-from bench_network_1000 import KEM_ALG, SIG_ALG, recv_msg, send_msg
+from bench_network_1000 import KEM_ALG, SIG_ALG, recv_msg, runtime_metadata, send_msg
 
 
 EPOCH = b"\x00\x00\x00\x01"
@@ -59,10 +59,14 @@ def parse_enrollment(m: bytes):
     return cid, pk
 
 
-def server_worker(conn: socket.socket, hs_per_client: int, ctx: ServerContext, result_list: list[float]):
+def server_worker(conn: socket.socket, hs_per_client: int, ctx: ServerContext, result_list: list[float], provisioning_dir: str):
     enr = recv_msg(conn)
     cid, pk_static = parse_enrollment(enr)
     ctx.enrolled[cid] = pk_static
+    anchor_path = Path(provisioning_dir) / f"{cid.decode('utf-8')}_anchor.bin"
+    if not anchor_path.is_file():
+        raise FileNotFoundError(f"missing provisioned anchor: {anchor_path}")
+    anchor = anchor_path.read_bytes()
     send_msg(conn, ctx.srv_pk)
     completed = 0
     while completed < hs_per_client:
@@ -97,7 +101,7 @@ def server_worker(conn: socket.socket, hs_per_client: int, ctx: ServerContext, r
             with oqs.KeyEncapsulation(KEM_ALG, srv_eph_sk) as kem:
                 ss3 = kem.decap_secret(ct3)
             tr = hashlib.sha256(m1 + m2 + ct3).digest()
-            prk = hmac.new(b"\x00" * 32, ss1 + ss2 + ss3, hashlib.sha256).digest()
+            prk = hmac.new(anchor, ss1 + ss2 + ss3, hashlib.sha256).digest()
             k_fin = hmac.new(prk, b"finished" + tr + b"\x01", hashlib.sha256).digest()
             expected = hmac.new(k_fin, tr + b"CL_FIN", hashlib.sha256).digest()
             if not hmac.compare_digest(t_c, expected):
@@ -112,7 +116,7 @@ def server_worker(conn: socket.socket, hs_per_client: int, ctx: ServerContext, r
     conn.close()
 
 
-def run_server(port: int, clients: int, hs_per_client: int):
+def run_server(port: int, clients: int, hs_per_client: int, provisioning_dir: str, output_path: str):
     ctx = ServerContext()
     srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -124,7 +128,7 @@ def run_server(port: int, clients: int, hs_per_client: int):
     procs = []
     for _ in range(clients):
         conn, _ = srv.accept()
-        proc = mp.Process(target=server_worker, args=(conn, hs_per_client, ctx, result_list))
+        proc = mp.Process(target=server_worker, args=(conn, hs_per_client + N_WARMUP, ctx, result_list, provisioning_dir))
         proc.start()
         procs.append(proc)
     for proc in procs:
@@ -132,7 +136,11 @@ def run_server(port: int, clients: int, hs_per_client: int):
     wall = time.perf_counter() - wall_start
     latencies = sorted(list(result_list))
     if not latencies:
-        print(json.dumps({"protocol": "RIA-QKD", "n_errors": clients * hs_per_client, "throughput_hs": 0.0}, indent=2))
+        result = {"protocol": "RIA-QKD", "role": "server", "n_errors": clients * hs_per_client, "throughput_hs": 0.0, "metadata": runtime_metadata("server")}
+        out = Path(output_path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, indent=2) + "\n")
+        print(json.dumps(result, indent=2))
         return
     result = {
         "protocol": "RIA-QKD",
@@ -146,19 +154,24 @@ def run_server(port: int, clients: int, hs_per_client: int):
             "median": round(statistics.median(latencies), 3),
             "p95": round(percentile(latencies, 0.95), 3),
             "p99": round(percentile(latencies, 0.99), 3),
+            "samples": [round(value, 6) for value in latencies],
         },
         "throughput_hs": round(len(latencies) / wall, 2),
+        "role": "server",
+        "metadata": runtime_metadata("server"),
     }
+    out = Path(output_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
 
 
-def client_worker(server_ip: str, port: int, hs_per_client: int, client_index: int, q: mp.Queue):
+def client_worker(server_ip: str, port: int, hs_per_client: int, client_index: int, provisioning_dir: str, q: mp.Queue):
     client_id = f"client-{client_index}".encode()
-    client_static_sk = None
-    client_static_pk = None
-    with oqs.KeyEncapsulation(KEM_ALG) as kem:
-        client_static_pk = kem.generate_keypair()
-        client_static_sk = kem.export_secret_key()
+    material_dir = Path(provisioning_dir)
+    client_static_sk = (material_dir / f"client-{client_index}_static_sk.bin").read_bytes()
+    client_static_pk = (material_dir / f"client-{client_index}_static_pk.bin").read_bytes()
+    anchor = (material_dir / f"client-{client_index}_anchor.bin").read_bytes()
     s = socket.create_connection((server_ip, port))
     enr = b"ENR" + struct.pack(">H", len(client_id)) + client_id + struct.pack(">H", len(client_static_pk)) + client_static_pk
     send_msg(s, enr)
@@ -201,23 +214,28 @@ def client_worker(server_ip: str, port: int, hs_per_client: int, client_index: i
         with oqs.KeyEncapsulation(KEM_ALG) as kem:
             ct3, ss3 = kem.encap_secret(srv_eph_pk)
         tr = hashlib.sha256(m1 + m2 + ct3).digest()
-        prk = hmac.new(b"\x00" * 32, ss1 + ss2 + ss3, hashlib.sha256).digest()
+        prk = hmac.new(anchor, ss1 + ss2 + ss3, hashlib.sha256).digest()
         k_fin = hmac.new(prk, b"finished" + tr + b"\x01", hashlib.sha256).digest()
         t_c = hmac.new(k_fin, tr + b"CL_FIN", hashlib.sha256).digest()
         send_msg(s, struct.pack(">H", len(ct3)) + ct3 + t_c)
-        _ = recv_msg(s)
+        m4 = recv_msg(s)
+        tr2 = hashlib.sha256(tr + struct.pack(">H", len(ct3)) + ct3 + t_c).digest()
+        expected_t_s = hmac.new(k_fin, tr2 + b"SV_FIN", hashlib.sha256).digest()
+        if not hmac.compare_digest(m4, expected_t_s):
+            errors += 1
+            continue
         if i >= N_WARMUP:
             latencies.append((time.perf_counter_ns() - start) / 1e6)
     q.put({"latencies_ms": latencies, "errors": errors})
 
 
-def run_client(server_ip: str, port: int, clients: int, hs_per_client: int, output_path: str):
+def run_client(server_ip: str, port: int, clients: int, hs_per_client: int, provisioning_dir: str, output_path: str):
     manager = mp.Manager()
     q = manager.Queue()
     procs = []
     start = time.perf_counter_ns()
     for i in range(clients):
-        p = mp.Process(target=client_worker, args=(server_ip, port, hs_per_client, i, q))
+        p = mp.Process(target=client_worker, args=(server_ip, port, hs_per_client, i, provisioning_dir, q))
         p.start()
         procs.append(p)
     results = [q.get() for _ in range(clients)]
@@ -237,9 +255,11 @@ def run_client(server_ip: str, port: int, clients: int, hs_per_client: int, outp
         "n_warmup": N_WARMUP,
         "n_measured": len(latencies),
         "n_errors": errors,
-        "latency_ms": {"mean": round(statistics.mean(latencies), 3), "median": round(statistics.median(latencies), 3), "p95": round(percentile(latencies, 0.95), 3), "p99": round(percentile(latencies, 0.99), 3)},
+        "latency_ms": {"mean": round(statistics.mean(latencies), 3), "median": round(statistics.median(latencies), 3), "p95": round(percentile(latencies, 0.95), 3), "p99": round(percentile(latencies, 0.99), 3), "samples": [round(value, 6) for value in latencies]},
         "wall_time_s": round(wall, 3),
         "throughput_hs": round(len(latencies) / wall, 2),
+        "role": "client",
+        "metadata": runtime_metadata("client"),
     }
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -254,14 +274,16 @@ def main():
     parser.add_argument("--port", type=int, default=9998)
     parser.add_argument("--clients", type=int, required=True)
     parser.add_argument("--hs-per-client", type=int, default=50)
+    parser.add_argument("--provisioning-dir", required=True)
     parser.add_argument("--output", default=str(ROOT / "out" / "network_concurrency.json"))
+    parser.add_argument("--server-output", default=str(ROOT / "out" / "network_concurrency_server.json"))
     args = parser.parse_args()
     if args.mode == "server":
-        run_server(args.port, args.clients, args.hs_per_client)
+        run_server(args.port, args.clients, args.hs_per_client, args.provisioning_dir, args.server_output)
     else:
         if not args.server_ip:
             raise SystemExit("--server-ip is required in client mode")
-        run_client(args.server_ip, args.port, args.clients, args.hs_per_client, args.output)
+        run_client(args.server_ip, args.port, args.clients, args.hs_per_client, args.provisioning_dir, args.output)
 
 
 if __name__ == "__main__":

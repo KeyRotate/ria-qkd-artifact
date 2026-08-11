@@ -12,7 +12,7 @@ This repository contains the code and scripts used to reproduce the main results
 - Optional cycle-style benchmark scripts
 - Cortex-M4 (STM32F407) primitive benchmarks and end-to-end handshake evidence (`m4/`; firmware, raw PPK2 power traces, serial captures, logs, the full benchmark workspace archive, and SHA-256 manifests)
 
-> Scope note (artifact-v1.4.1): this artifact validates the protocol and its
+> Scope note (artifact-v1.5): this artifact validates the protocol and its
 > performance as a *software* implementation. It does not exercise or validate
 > a physical HSM or QKD device; the HSM-only derivation boundary and the QKD
 > interface are deployment assumptions of the architecture, not properties
@@ -55,6 +55,18 @@ Place files as follows:
 
 Start the server first, then start the client.
 
+For the concurrent benchmark, generate independent per-client materials:
+
+```bash
+python3 network/provision_materials.py \
+  --outdir out/provisioning/concurrency \
+  --count 16
+```
+
+This creates `client-0` through `client-15` static key pairs and anchors.
+Keep these files outside the public artifact; the benchmark only archives
+the resulting measurements and the fact that distinct materials were used.
+
 Example copy commands:
 
 ```bash
@@ -93,7 +105,8 @@ python3 network/bench_network_1000.py \
   --n 5000 \
   --client-static-pk out/provisioning/client_static_pk.bin \
   --server-sig-pk-out out/provisioning/server_sig_pk.bin \
-  --anchor out/provisioning/anchor.bin
+  --anchor out/provisioning/anchor.bin \
+  --output out/network_bench_5000_server.json
 ```
 
 Client:
@@ -115,8 +128,9 @@ Output: `out/network_bench_5000.json`
 
 Expected values:
 
-- mean latency: about `19.3 ms`
-- throughput: about `51.7 hs/s`
+- pooled mean latency over 3 x 5000 samples: `16.739 ms`
+- pooled latency-equivalent rate: `59.74 hs/s`
+- per-run mean range: `16.673--16.827 ms`
 
 ## 3. Netem RTT 50 ms
 
@@ -138,8 +152,9 @@ sudo tc qdisc replace dev <PI_DEV> root fq_codel
 
 Expected values:
 
-- mean latency: about `120 ms`
-- throughput: about `8.3 hs/s`
+- pooled mean latency over 3 x 1000 samples: `122.236 ms`
+- pooled latency-equivalent rate: `8.18 hs/s`
+- per-run mean range: `121.977--122.533 ms`
 
 ## 4. Concurrent benchmark
 
@@ -150,7 +165,9 @@ python3 network/bench_network_concurrency.py \
   --mode server \
   --port 9998 \
   --clients 16 \
-  --hs-per-client 50
+  --hs-per-client 50 \
+  --provisioning-dir out/provisioning/concurrency \
+  --server-output out/network_concurrency_server.json
 ```
 
 Client:
@@ -162,14 +179,17 @@ python3 network/bench_network_concurrency.py \
   --port 9998 \
   --clients 16 \
   --hs-per-client 50 \
+  --provisioning-dir out/provisioning/concurrency \
   --output out/network_concurrency.json
 ```
 
 Expected values:
 
-- mean latency: about `109 ms`
-- p99 latency: about `253 ms`
-- throughput: about `103 hs/s`
+- pooled mean latency over 3 x 800 samples: `66.768 ms`
+- pooled p99 latency: `90.987 ms`
+- client-observed completion rate: about `177.41 hs/s`
+- Each concurrent client uses a distinct provisioned static key and anchor;
+  the server and client must receive the same per-client material directory.
 
 ## Optional: KEMTLS-full contextual reference
 
@@ -180,7 +200,8 @@ python3 network/bench_network_kemtls_full_1000.py \
   --mode server \
   --port 9994 \
   --n 1000 \
-  --trust-store-out out/provisioning/kemtls_trust_store.json
+  --trust-store-out out/provisioning/kemtls_trust_store.json \
+  --server-output out/network_kemtls_full_1000_server.json
 ```
 
 Copy `out/provisioning/kemtls_trust_store.json` to the client host, then run:
@@ -197,6 +218,8 @@ python3 network/bench_network_kemtls_full_1000.py \
 
 Expected values:
 
+- pooled mean latency over 3 x 1000 samples: `7.476 ms`
+- pooled latency-equivalent rate: `133.76 hs/s`
 - the script should complete without handshake failures
 - output file: `out/network_kemtls_full_1000.json`
 
@@ -213,3 +236,6 @@ python3 benchmarks/measure_cycles_accurate.py
 - The code does not contain repository-specific IP addresses or `/root` paths.
 - Network scripts write outputs to relative paths under `out/`.
 - A liboqs/liboqs-python version warning may appear and does not block the run.
+- Archived raw network evidence and the generated pooled summary are under
+  `network/evidence/20260811_v1.5/`; run
+  `network/summarize_network_evidence.py` after a new three-run set.
