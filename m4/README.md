@@ -17,11 +17,21 @@ primitive measurements reported in Section V-D / Table III of the paper.
   - `m4_creds.h` - **template only**: the deployed test credentials (client
     static ML-KEM secret key, gateway ML-DSA public key, shared anchor) are
     not published; see the header for how to provision your own values.
-- `firmware/scripts/build_handshake.sh` - build script (arm-none-eabi-gcc).
+- `firmware/scripts/build_handshake.sh` - self-contained build script
+  (arm-none-eabi-gcc); extracts the pqm4 sources from the archive under
+  `evidence/benchmark/archive/` and compiles the firmware in the git-ignored
+  `m4/e2e-build/` workspace.
 - `evidence/benchmark/` - per-operation primitive results
   (`results_energy.txt` is the canonical source: ML-KEM-512 decap 881,252
   cycles = 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 17.0M cycles = 101.3 ms /
   ~53.4 mJ; `results.txt` is an earlier, superseded provenance pass).
+- `evidence/benchmark/archive/` - `m4bench_evidence.tar.gz` (the full
+  benchmark workspace: the pqm4/PQClean ML-KEM-512 and ML-DSA-44 sources under
+  `m4bench/pqc/`, the benchmark firmware `m4bench/src/`, build scripts, the
+  flashed binary, build log, and the raw PPK2 benchmark waveforms) plus its
+  SHA-256 manifest. `firmware/scripts/build_handshake.sh` auto-extracts the
+  `pqc/` sources from this archive, so the end-to-end firmware build is
+  self-contained from the repository.
 - `evidence/e2e_logs/` - 2026-08-07 end-to-end run: 30 server-side handshake
   OK entries, M4-side DWT latencies (n=6), PPK2 waveform, RESULTS.md, and
   the SHA-256 manifest.

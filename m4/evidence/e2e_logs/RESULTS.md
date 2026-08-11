@@ -1,7 +1,19 @@
 # Cortex-M4 RIA-QKD End-to-End Handshake over Public Network (Evidence)
 
-Date: 2026-08-07
-Setup:
+PROVENANCE NOTE: this top-level file documents two distinct sessions over the
+same FRP path:
+  * 2026-08-07: the N=30 server-side `handshake OK` log, the server-side
+    latency statistics, and the M4-side DWT latencies (n=6) in
+    `M4_latency_results.txt`; `ppk2_hs2_capture.bin` is a single 2026-08-07
+    PPK2 power trace whose PA5 window (~1.1 s) corresponds to one of those
+    short-latency handshakes (it carries no DWT results frame, so it is not
+    paired to a specific n=6 entry).
+  * 2026-08-11: the three PPK2 re-captures and their raw serial frames in
+    `ppk2_20260811/` (see that directory's RESULTS_20260811.md for details and
+    its calibration/provenance notes).
+
+Setup (2026-08-07 path shown below; 08-11 is identical except the server EOF
+handling was hardened for unattended re-runs):
   - M4: STM32F407G-DISC1 (Cortex-M4F, 168 MHz), USART2 (PA2/PA3) @115200 baud
   - Serial bridge: CP2102 (Dell /dev/ttyUSB0)
   - Path: M4 -> Dell CP2102 -> relay -> frp.vivon1031.top:36012 -> NUC RIA-QKD server
@@ -28,5 +40,6 @@ Full-handshake energy (PPK2 source-meter, 3.3 V, 100 kHz, PA5-delimited) - recap
 M4 primitive time/energy (from m4bench, per-operation):
   ML-KEM-512 decap 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 101.3 ms / ~53.4 mJ
 
-Supplementary files: server_handshake_log.txt (30 entries), M4_latency_results.txt,
-ppk2_hs2_capture.bin (raw PPK2 waveform).
+Supplementary files: server_handshake_log.txt (30 entries, 2026-08-07),
+M4_latency_results.txt (n=6, 2026-08-07), ppk2_hs2_capture.bin (single
+2026-08-07 raw PPK2 waveform, ~1.1 s PA5 window, no DWT frame).

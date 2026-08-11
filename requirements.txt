@@ -1,3 +1,11 @@
 cryptography>=41.0.0
 pycryptodome>=3.19.0
 liboqs-python>=0.14.0
+# Required to re-run the Cortex-M4 PPK2 capture-analysis script
+# (m4/evidence/e2e_ppk2_20260811/ppk2_analyze.py):
+numpy>=1.24.0
+# Nordic ppk2-api provides the PPK2_API class used to decode the raw .bin traces.
+# NOTE: absolute current/peak/energy values depend on device-specific calibration
+# modifiers read from a live PPK2 at analysis time; they cannot be reproduced
+# from the archived .bin files alone.
+ppk2-api>=1.0.0

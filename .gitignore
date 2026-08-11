@@ -12,3 +12,7 @@ dist/
 *.so
 *.o
 *.bin
+# Raw Cortex-M4 evidence (PPK2 power traces + relay serial captures) MUST ship
+!m4/evidence/**/*.bin
+# Local build workspace created by build_handshake.sh
+m4/e2e-build/
