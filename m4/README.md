@@ -54,8 +54,9 @@ Precision 5820 -> FRP TCP reverse-proxy over the public Internet ->
 Intel NUC running the RIA-QKD server (`ria_server.py`, provisioned from
 client static pk / server sig sk / shared anchor). The FRP path was
 experimental transport and remote-control infrastructure, not a RIA-QKD
-protocol endpoint. All negotiated shared secrets byte-match the liboqs
-reference on the server, and the ML-DSA-44 server signature verifies on the M4.
+protocol endpoint. The archived results frames verify the server Finished tag
+on the M4; the implementation was cross-checked against liboqs during setup,
+but no standalone ss1/ss2/ss3 comparison file is included in this artifact.
 
 ## License note
 

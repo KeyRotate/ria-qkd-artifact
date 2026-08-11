@@ -12,7 +12,7 @@ This repository contains the code and scripts used to reproduce the main results
 - Optional cycle-style benchmark scripts
 - Cortex-M4 (STM32F407) primitive benchmarks and end-to-end handshake evidence (`m4/`; firmware, raw PPK2 power traces, serial captures, logs, the full benchmark workspace archive, and SHA-256 manifests)
 
-> Scope note (artifact-v1.4): this artifact validates the protocol and its
+> Scope note (artifact-v1.4.1): this artifact validates the protocol and its
 > performance as a *software* implementation. It does not exercise or validate
 > a physical HSM or QKD device; the HSM-only derivation boundary and the QKD
 > interface are deployment assumptions of the architecture, not properties
