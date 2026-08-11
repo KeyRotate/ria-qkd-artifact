@@ -1,0 +1,23 @@
+{
+  "platform": {
+    "hostname": "nuc",
+    "machine": "x86_64",
+    "python": "3.12.3",
+    "processor": "x86_64",
+    "liboqs": "0.15.0"
+  },
+  "kem": {
+    "algorithm": "ML-KEM-512",
+    "iterations": 100,
+    "keygen_ms": 0.0634,
+    "encap_ms": 0.0243,
+    "decap_ms": 0.0201
+  },
+  "sig": {
+    "algorithm": "ML-DSA-44",
+    "iterations": 100,
+    "keygen_ms": 0.0689,
+    "sign_ms": 0.118,
+    "verify_ms": 0.0474
+  }
+}

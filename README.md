@@ -240,3 +240,6 @@ python3 benchmarks/measure_cycles_accurate.py
 - Archived raw network evidence and the generated pooled summary are under
   `network/evidence/20260811_v1.6/`; run
   `network/summarize_network_evidence.py` after a new three-run set.
+- Per-operation and client-path timings are archived under
+  `benchmarks/evidence/20260811_v1.6/` (three runs per platform, `measure_perf.py`
+  and `measure_client_path.py`).

@@ -1,0 +1,23 @@
+{
+  "platform": {
+    "hostname": "pi",
+    "machine": "armv7l",
+    "python": "3.13.5",
+    "processor": "",
+    "liboqs": "0.15.0"
+  },
+  "kem": {
+    "algorithm": "ML-KEM-512",
+    "iterations": 100,
+    "keygen_ms": 1.7657,
+    "encap_ms": 1.5776,
+    "decap_ms": 1.8741
+  },
+  "sig": {
+    "algorithm": "ML-DSA-44",
+    "iterations": 100,
+    "keygen_ms": 4.8264,
+    "sign_ms": 12.5869,
+    "verify_ms": 4.6274
+  }
+}
