@@ -12,7 +12,7 @@ This repository contains the code and scripts used to reproduce the main results
 - Optional cycle-style benchmark scripts
 - Cortex-M4 (STM32F407) primitive benchmarks and end-to-end handshake evidence (`m4/`; firmware, raw PPK2 power traces, serial captures, logs, the full benchmark workspace archive, and SHA-256 manifests)
 
-> Scope note (artifact-v1.5): this artifact validates the protocol and its
+> Scope note (artifact-v1.6): this artifact validates the protocol and its
 > performance as a *software* implementation. It does not exercise or validate
 > a physical HSM or QKD device; the HSM-only derivation boundary and the QKD
 > interface are deployment assumptions of the architecture, not properties
@@ -128,9 +128,9 @@ Output: `out/network_bench_5000.json`
 
 Expected values:
 
-- pooled mean latency over 3 x 5000 samples: `16.739 ms`
-- pooled latency-equivalent rate: `59.74 hs/s`
-- per-run mean range: `16.673--16.827 ms`
+- pooled mean latency over 3 x 5000 samples: `16.309 ms`
+- pooled latency-equivalent rate: `61.32 hs/s`
+- per-run mean range: `15.885--16.947 ms`
 
 ## 3. Netem RTT 50 ms
 
@@ -152,9 +152,9 @@ sudo tc qdisc replace dev <PI_DEV> root fq_codel
 
 Expected values:
 
-- pooled mean latency over 3 x 1000 samples: `122.236 ms`
-- pooled latency-equivalent rate: `8.18 hs/s`
-- per-run mean range: `121.977--122.533 ms`
+- pooled mean latency over 3 x 1000 samples: `123.022 ms`
+- pooled latency-equivalent rate: `8.13 hs/s`
+- per-run mean range: `122.961--123.109 ms`
 
 ## 4. Concurrent benchmark
 
@@ -185,9 +185,10 @@ python3 network/bench_network_concurrency.py \
 
 Expected values:
 
-- pooled mean latency over 3 x 800 samples: `66.768 ms`
-- pooled p99 latency: `90.987 ms`
-- client-observed completion rate: about `177.41 hs/s`
+- pooled mean latency over 3 x 800 samples: `66.960 ms`
+- pooled p99 latency: `88.011 ms`
+- client-observed completion rate: about `176.97 hs/s`
+- server wall-clock rate (measured from first connection): about `181.09 hs/s`
 - Each concurrent client uses a distinct provisioned static key and anchor;
   the server and client must receive the same per-client material directory.
 
@@ -218,8 +219,8 @@ python3 network/bench_network_kemtls_full_1000.py \
 
 Expected values:
 
-- pooled mean latency over 3 x 1000 samples: `7.476 ms`
-- pooled latency-equivalent rate: `133.76 hs/s`
+- pooled mean latency over 3 x 1000 samples: `8.080 ms`
+- pooled latency-equivalent rate: `123.76 hs/s`
 - the script should complete without handshake failures
 - output file: `out/network_kemtls_full_1000.json`
 
@@ -237,5 +238,5 @@ python3 benchmarks/measure_cycles_accurate.py
 - Network scripts write outputs to relative paths under `out/`.
 - A liboqs/liboqs-python version warning may appear and does not block the run.
 - Archived raw network evidence and the generated pooled summary are under
-  `network/evidence/20260811_v1.5/`; run
+  `network/evidence/20260811_v1.6/`; run
   `network/summarize_network_evidence.py` after a new three-run set.

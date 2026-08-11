@@ -1,0 +1,32 @@
+{
+  "protocol": "RIA-QKD",
+  "role": "server",
+  "expected_handshakes": 5020,
+  "completed": 5020,
+  "wall_time_s": 89.532,
+  "throughput_hs": 56.07,
+  "metadata": {
+    "role": "server",
+    "hostname": "nuc",
+    "python": "3.12.3",
+    "liboqs_version": "0.15.0",
+    "argv": [
+      "network/bench_network_1000.py",
+      "--mode",
+      "server",
+      "--port",
+      "22001",
+      "--n",
+      "5000",
+      "--client-static-pk",
+      "<SERVER_PROVISION_DIR>/base/client_static_pk.bin",
+      "--server-sig-pk-out",
+      "<SERVER_PROVISION_DIR>/run1_server_sig_pk.bin",
+      "--anchor",
+      "<SERVER_PROVISION_DIR>/base/anchor.bin",
+      "--output",
+      "network/evidence/20260811_v1.6/run1_lan/server.json"
+    ],
+    "timestamp_utc": "2026-08-11T12:07:33.232107+00:00"
+  }
+}

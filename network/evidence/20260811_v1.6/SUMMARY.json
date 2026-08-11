@@ -1,0 +1,249 @@
+{
+  "artifact_run": "20260811_v1.6",
+  "conditions": {
+    "ria_lan": {
+      "n_runs": 3,
+      "n_measured_total": 15000,
+      "n_errors_total": 0,
+      "aggregate_samples": {
+        "mean_ms": 16.309,
+        "median_ms": 15.687,
+        "p95_ms": 19.22,
+        "p99_ms": 22.619
+      },
+      "run_mean_ms": {
+        "mean": 16.309,
+        "min": 15.885,
+        "max": 16.947
+      },
+      "run_p95_ms": {
+        "min": 18.003,
+        "max": 20.678
+      },
+      "run_p99_ms": {
+        "min": 20.223,
+        "max": 24.185
+      },
+      "run_throughput_hs": {
+        "mean": 61.36,
+        "min": 59.01,
+        "max": 62.95
+      },
+      "runs": [
+        {
+          "file": "network/evidence/20260811_v1.6/run1_lan/run1_lan_client.json",
+          "n_measured": 5000,
+          "n_errors": 0,
+          "mean_ms": 15.885,
+          "median_ms": 15.471,
+          "p95_ms": 18.003,
+          "p99_ms": 20.223,
+          "throughput_hs": 62.95
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run2_lan/run2_lan_client.json",
+          "n_measured": 5000,
+          "n_errors": 0,
+          "mean_ms": 16.094,
+          "median_ms": 15.578,
+          "p95_ms": 18.625,
+          "p99_ms": 21.329,
+          "throughput_hs": 62.13
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run3_lan/run3_lan_client.json",
+          "n_measured": 5000,
+          "n_errors": 0,
+          "mean_ms": 16.947,
+          "median_ms": 16.339,
+          "p95_ms": 20.678,
+          "p99_ms": 24.185,
+          "throughput_hs": 59.01
+        }
+      ]
+    },
+    "ria_rtt50": {
+      "n_runs": 3,
+      "n_measured_total": 3000,
+      "n_errors_total": 0,
+      "aggregate_samples": {
+        "mean_ms": 123.022,
+        "median_ms": 122.955,
+        "p95_ms": 126.973,
+        "p99_ms": 132.025
+      },
+      "run_mean_ms": {
+        "mean": 123.022,
+        "min": 122.961,
+        "max": 123.109
+      },
+      "run_p95_ms": {
+        "min": 126.635,
+        "max": 127.178
+      },
+      "run_p99_ms": {
+        "min": 130.085,
+        "max": 132.723
+      },
+      "run_throughput_hs": {
+        "mean": 8.13,
+        "min": 8.12,
+        "max": 8.13
+      },
+      "runs": [
+        {
+          "file": "network/evidence/20260811_v1.6/run1_rtt50/run1_rtt50_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 122.961,
+          "median_ms": 122.597,
+          "p95_ms": 126.635,
+          "p99_ms": 131.027,
+          "throughput_hs": 8.13
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run2_rtt50/run2_rtt50_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 122.997,
+          "median_ms": 123.029,
+          "p95_ms": 127.155,
+          "p99_ms": 130.085,
+          "throughput_hs": 8.13
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run3_rtt50/run3_rtt50_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 123.109,
+          "median_ms": 122.957,
+          "p95_ms": 127.178,
+          "p99_ms": 132.723,
+          "throughput_hs": 8.12
+        }
+      ]
+    },
+    "ria_concurrency": {
+      "n_runs": 3,
+      "n_measured_total": 2400,
+      "n_errors_total": 0,
+      "aggregate_samples": {
+        "mean_ms": 66.96,
+        "median_ms": 67.758,
+        "p95_ms": 80.391,
+        "p99_ms": 88.011
+      },
+      "run_mean_ms": {
+        "mean": 66.96,
+        "min": 66.384,
+        "max": 67.254
+      },
+      "run_p95_ms": {
+        "min": 77.962,
+        "max": 82.638
+      },
+      "run_p99_ms": {
+        "min": 85.429,
+        "max": 89.941
+      },
+      "run_throughput_hs": {
+        "mean": 176.97,
+        "min": 176.83,
+        "max": 177.05
+      },
+      "runs": [
+        {
+          "file": "network/evidence/20260811_v1.6/run1_concurrency/run1_concurrency_client.json",
+          "n_measured": 800,
+          "n_errors": 0,
+          "mean_ms": 66.384,
+          "median_ms": 67.517,
+          "p95_ms": 82.638,
+          "p99_ms": 89.941,
+          "throughput_hs": 177.05
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run2_concurrency/run2_concurrency_client.json",
+          "n_measured": 800,
+          "n_errors": 0,
+          "mean_ms": 67.241,
+          "median_ms": 67.768,
+          "p95_ms": 78.425,
+          "p99_ms": 87.322,
+          "throughput_hs": 177.03
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run3_concurrency/run3_concurrency_client.json",
+          "n_measured": 800,
+          "n_errors": 0,
+          "mean_ms": 67.254,
+          "median_ms": 67.83,
+          "p95_ms": 77.962,
+          "p99_ms": 85.429,
+          "throughput_hs": 176.83
+        }
+      ]
+    },
+    "kemtls_contextual": {
+      "n_runs": 3,
+      "n_measured_total": 3000,
+      "n_errors_total": 0,
+      "aggregate_samples": {
+        "mean_ms": 8.08,
+        "median_ms": 7.594,
+        "p95_ms": 10.833,
+        "p99_ms": 13.391
+      },
+      "run_mean_ms": {
+        "mean": 8.08,
+        "min": 7.792,
+        "max": 8.247
+      },
+      "run_p95_ms": {
+        "min": 9.831,
+        "max": 11.36
+      },
+      "run_p99_ms": {
+        "min": 11.406,
+        "max": 14.187
+      },
+      "run_throughput_hs": {
+        "mean": 123.84,
+        "min": 121.25,
+        "max": 128.33
+      },
+      "runs": [
+        {
+          "file": "network/evidence/20260811_v1.6/run1_kemtls/run1_kemtls_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 8.201,
+          "median_ms": 7.684,
+          "p95_ms": 11.051,
+          "p99_ms": 13.391,
+          "throughput_hs": 121.93
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run2_kemtls/run2_kemtls_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 8.247,
+          "median_ms": 7.711,
+          "p95_ms": 11.36,
+          "p99_ms": 14.187,
+          "throughput_hs": 121.25
+        },
+        {
+          "file": "network/evidence/20260811_v1.6/run3_kemtls/run3_kemtls_client.json",
+          "n_measured": 1000,
+          "n_errors": 0,
+          "mean_ms": 7.792,
+          "median_ms": 7.371,
+          "p95_ms": 9.831,
+          "p99_ms": 11.406,
+          "throughput_hs": 128.33
+        }
+      ]
+    }
+  }
+}

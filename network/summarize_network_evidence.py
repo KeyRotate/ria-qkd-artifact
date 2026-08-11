@@ -77,7 +77,7 @@ def main() -> None:
         "ria_concurrency": "run*_concurrency/*_client.json",
         "kemtls_contextual": "run*_kemtls/*_client.json",
     }
-    result = {"artifact_run": "20260811_v1.5", "conditions": {}}
+    result = {"artifact_run": args.root.name, "conditions": {}}
     for name, pattern in conditions.items():
         paths = list(args.root.glob(pattern))
         if len(paths) != 3:

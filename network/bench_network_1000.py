@@ -68,10 +68,16 @@ def percentile(sorted_values, p):
 
 
 def runtime_metadata(role: str):
+    try:
+        import oqs
+        liboqs_version = oqs.oqs_python_version()
+    except Exception:
+        liboqs_version = "unavailable"
     return {
         "role": role,
         "hostname": socket.gethostname(),
         "python": platform.python_version(),
+        "liboqs_version": liboqs_version,
         "argv": list(sys.argv),
         "timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
@@ -108,12 +114,14 @@ def run_server(port, n_total, client_static_pk_path: str, server_sig_pk_out: str
             ct2, ss2 = kem.encap_secret(cli_eph_pk)
             srv_eph_pk_bytes = kem.generate_keypair()
             srv_eph_sk_bytes = kem.export_secret_key()
-        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cli_id + epoch + r_c + srv_eph_pk_bytes + ct1 + ct2)
+        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cli_id + epoch + r_c + cli_eph_pk + srv_eph_pk_bytes + ct1 + ct2)
         with oqs.Signature(SIG_ALG, srv_sk_bytes) as signer:
             sig = signer.sign(transcript)
         m2 = struct.pack(">H", len(srv_eph_pk_bytes)) + srv_eph_pk_bytes + struct.pack(">H", len(ct1)) + ct1 + struct.pack(">H", len(ct2)) + ct2 + struct.pack(">H", len(sig)) + sig
         send_msg(conn, m2)
         m3 = recv_msg(conn)
+        if m3 == b"FAIL":
+            continue
         ct3_len = struct.unpack(">H", m3[:2])[0]
         ct3 = m3[2:2 + ct3_len]
         t_c = m3[2 + ct3_len:]
@@ -179,8 +187,9 @@ def run_client(server_ip, port, n, client_static_sk_path: str, server_sig_pk_pat
         sig_len = struct.unpack(">H", m2[off:off + 2])[0]
         off += 2
         sig = m2[off:off + sig_len]
-        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cid + b"\x00\x00\x00\x01" + rc + srv_eph_pk + ct1 + ct2)
+        transcript = hash_transcript(b"RIA-QKD-V1-Server", SERVER_ID + cid + b"\x00\x00\x00\x01" + rc + pk_eph + srv_eph_pk + ct1 + ct2)
         if not oqs.Signature(SIG_ALG).verify(transcript, sig, server_sig_pk):
+            send_msg(s, b"FAIL")
             errors += 1
             continue
         with oqs.KeyEncapsulation(KEM_ALG, client_static_sk) as kem:
@@ -195,10 +204,15 @@ def run_client(server_ip, port, n, client_static_sk_path: str, server_sig_pk_pat
         t_c = HMACWrapper.compute(k_fin, tr + b"CL_FIN")
         send_msg(s, struct.pack(">H", len(ct3)) + ct3 + t_c)
         m4 = recv_msg(s)
-        if i >= N_WARMUP:
-            latencies.append((time.perf_counter_ns() - start) / 1e6)
         if m4 == b"FAIL":
             errors += 1
+            continue
+        tr2 = hash_transcript(tr + struct.pack(">H", len(ct3)) + ct3 + t_c)
+        if not HMACWrapper.verify(k_fin, tr2 + b"SV_FIN", m4):
+            errors += 1
+            continue
+        if i >= N_WARMUP:
+            latencies.append((time.perf_counter_ns() - start) / 1e6)
     latencies.sort()
     result = {
         "protocol": "RIA-QKD",
