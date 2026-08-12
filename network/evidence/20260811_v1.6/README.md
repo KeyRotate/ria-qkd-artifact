@@ -38,8 +38,7 @@ network evidence.
   wall clock at the first client connection; the completion count in the
   numerator excludes warmups, while the wall-clock window includes the
   clients' enrollment and warm-up phases, so the reported server rate is a
-  conservative busy-time estimate (the true busy throughput is somewhat
-  higher than the reported 180.49-181.83 hs/s).
+  conservative end-to-end wall-clock rate, not a busy-time measurement.
 - Both hosts report `liboqs 0.15.0` (C and Python bindings) in the metadata.
 
 ## Testbed
@@ -62,8 +61,10 @@ network evidence.
 - `run*_rtt50/`: RIA-QKD, 1,000 measured handshakes plus 20 warmups.
 - `run*_concurrency/`: 16 clients, 50 measured handshakes plus 5 warmups per
   client; both the client and server outputs contain 800 post-warmup samples.
-- `run*_kemtls/`: contextual KEMTLS-full reference, 1,000 measured
-  handshakes plus 20 warmups.
+- `run*_kemtls/`: contextual KEMTLS-style server-auth-only reference, 1,000
+  measured handshakes plus 20 warmups. The archived JSON label retains the
+  historical `KEMTLS-full` string, but the implementation has no client static
+  KEM credential and must not be treated as a mutual-authentication baseline.
 
 `SUMMARY.json` is generated from the raw client JSON files by
 `network/summarize_network_evidence.py`. The aggregate values in the paper
@@ -73,3 +74,11 @@ in `SUMMARY.json`.
 The server-side wall-clock record is archived in each `server.json`. The
 raw terminal stdout logs are not archived (they are gitignored); the recorded
 `server.json` captures the same completed-count and wall-clock information.
+
+Each sequential run reuses one persistent TCP connection. Client latency starts
+immediately before sending `m1`, after client ephemeral-key generation and
+nonce sampling; it therefore measures the protocol exchange rather than TCP
+setup or local key generation. The RTT=50 ms condition was configured with
+the documented `tc netem` commands. The original qdisc dumps were not archived,
+so the condition is reproducible from the commands but not independently
+reconstructible from the stored JSON alone.

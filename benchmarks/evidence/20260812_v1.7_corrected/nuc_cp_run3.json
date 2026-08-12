@@ -1,0 +1,12 @@
+{
+  "platform": {
+    "hostname": "nuc",
+    "machine": "x86_64",
+    "python": "3.12.3",
+    "processor": "x86_64",
+    "liboqs": "0.15.0"
+  },
+  "iterations": 100,
+  "mtls_pqc_client_path_ms": 0.1861,
+  "ria_qkd_client_path_ms": 0.1315
+}

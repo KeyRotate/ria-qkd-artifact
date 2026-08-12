@@ -8,15 +8,19 @@ This repository contains the code and scripts used to reproduce the main results
 - LAN handshake latency at `N=5000`
 - Netem RTT `50 ms` handshake latency
 - Concurrent handshake benchmark with `16` clients
-- Optional contextual reference: `KEMTLS-full`
+- Optional contextual reference: KEMTLS-style server-auth-only handshake
 - Optional cycle-style benchmark scripts
 - Cortex-M4 (STM32F407) primitive benchmarks and end-to-end handshake evidence (`m4/`; firmware, raw PPK2 power traces, serial captures, logs, the full benchmark workspace archive, and SHA-256 manifests)
 
-> Scope note (artifact-v1.6): this artifact validates the protocol and its
+> Scope note (artifact-v1.7): this artifact validates the protocol and its
 > performance as a *software* implementation. It does not exercise or validate
 > a physical HSM or QKD device; the HSM-only derivation boundary and the QKD
 > interface are deployment assumptions of the architecture, not properties
 > established by this code.
+>
+> The artifact does not publish a numerical TLS-PSK baseline. TLS-PSK has
+> different credential and record-layer choices, so the manuscript retains it
+> only as a qualitative trust-model comparison rather than a measured result.
 
 ## Requirements
 
@@ -190,12 +194,16 @@ Expected values:
 - client-observed completion rate: about `176.97 hs/s`
 - server wall-clock rate (measured from the first client connection; the
   window includes the clients' enrollment and warm-up phases while the
-  completion count excludes warmups, so the rate is conservative): about
-  `181.09 hs/s`
+  completion count excludes warmups, so this is a conservative end-to-end
+  wall-clock rate): about `181.09 hs/s`
 - Each concurrent client uses a distinct provisioned static key and anchor;
   the server and client must receive the same per-client material directory.
 
-## Optional: KEMTLS-full contextual reference
+## Optional: KEMTLS-style server-auth-only contextual reference
+
+This script is a server-auth-only KEMTLS-style latency reference. It does not
+implement a client static KEM credential and is therefore not a like-for-like
+mutual-authentication baseline for RIA-QKD.
 
 Server:
 
@@ -245,4 +253,6 @@ python3 benchmarks/measure_cycles_accurate.py
   `network/summarize_network_evidence.py` after a new three-run set.
 - Per-operation and client-path timings are archived under
   `benchmarks/evidence/20260811_v1.6/` (three runs per platform, `measure_perf.py`
-  and `measure_client_path.py`).
+  and `measure_client_path.py`). The corrected client-path baseline used by the
+  manuscript's Table III is archived under
+  `benchmarks/evidence/20260812_v1.7_corrected/`.

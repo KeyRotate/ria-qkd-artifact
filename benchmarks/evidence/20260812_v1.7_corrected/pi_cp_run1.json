@@ -1,0 +1,12 @@
+{
+  "platform": {
+    "hostname": "pi",
+    "machine": "armv7l",
+    "python": "3.13.5",
+    "processor": "",
+    "liboqs": "0.15.0"
+  },
+  "iterations": 100,
+  "mtls_pqc_client_path_ms": 18.0866,
+  "ria_qkd_client_path_ms": 9.8937
+}

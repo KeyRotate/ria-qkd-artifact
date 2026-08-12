@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""KEMTLS-family contextual reference benchmark."""
+"""KEMTLS-style server-auth-only contextual reference benchmark.
+
+This intentionally lightweight reference has no client static KEM credential.
+It is useful for latency context only, not as a mutual-authentication baseline.
+"""
 
 from __future__ import annotations
 
@@ -226,7 +230,7 @@ def run_server(port, n_total, trust_store_out: str = "", output_path: str = ""):
 
     elapsed = time.perf_counter() - t_start
     result = {
-        "protocol": "KEMTLS-full",
+        "protocol": "KEMTLS-style-server-auth-only",
         "role": "server",
         "expected_handshakes": n_total,
         "completed": completed,
@@ -350,7 +354,7 @@ def run_client(server_ip, port, n_total, trust_store_path, label="default", outp
     p99_ms = percentile(sorted_latencies, 0.99) / 1e6
 
     result = {
-        "protocol": "KEMTLS-full",
+        "protocol": "KEMTLS-style-server-auth-only",
         "label": label,
         "n_warmup": N_WARMUP,
         "n_measured": n,

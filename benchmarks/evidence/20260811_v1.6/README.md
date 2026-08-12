@@ -42,5 +42,9 @@ signature from a valid signing run passes the norm and hash checks and fails
 only at the final key comparison), and verification cost is input-independent.
 Re-runs on both platforms with the corrected script reproduce the archived
 values within measurement noise (e.g., Raspberry Pi 2B client path 18.42 ->
-17.68 ms mTLS, 9.95 -> 9.91 ms RIA-QKD). The archived JSONs therefore remain
-the authoritative timing evidence.
+17.68 ms mTLS, 9.95 -> 9.91 ms RIA-QKD).
+
+On 2026-08-12 a fresh three-run-per-platform corrected set was archived in
+`../20260812_v1.7_corrected/` (same script revision, SHA-256 recorded). The
+manuscript's Table III and client-path prose now use those corrected medians;
+this v1.6 pass is retained as provenance for the pre-fix baseline.
