@@ -8,8 +8,10 @@ Cycle counts (DWT, clock-independent):
 
 Energy per operation (cycle-loop, PA5-bounded, 100kHz sampling):
   ML-KEM-512 decap: 20 samples, avg dur 5.25ms, avg I 125.2mA, E=2168 uJ (2.17 mJ)
-  ML-DSA-44 sign:   22 samples, avg E=53418 uJ (53.4 mJ), range 16091-156428 uJ
+  ML-DSA-44 sign:   20 genuine signing windows, avg E=48487 uJ (48.5 mJ), range 16091-156428 uJ
                     avg I ~145mA
+  Original duration-only classifier: 22 windows, avg E=53418 uJ (53.4 mJ);
+                                    two post-loop idle-indicator pulses were included.
 
 Cross-check (back-to-back energy blocks):
   decap block 200x: total 523199 uJ -> 2616 uJ/op
@@ -17,9 +19,21 @@ Cross-check (back-to-back energy blocks):
 
 Interpretation note:
   The canonical values above come from isolated, PA5-bounded operation
-  windows. The block values are aggregate measurements over repeated
-  operations and their surrounding loop/marker/measurement interval; they
-  are not directly interchangeable with isolated-operation values. The source
-  run did not record a decomposition of the 20.7% decapsulation difference,
-  so the manuscript uses only the isolated-operation values (2.17 mJ and
-  53.4 mJ). Both measurements are retained for provenance.
+  windows. The original duration-only classifier also captured two
+  post-loop idle-indicator pulses; its 53.4 mJ mean is retained only as
+  unfiltered provenance, while 48.5 mJ is the corrected mean for the 20
+  genuine signing windows. The block values are aggregate measurements over
+  repeated operations and their surrounding loop/marker/measurement interval;
+  they are not directly interchangeable with isolated-operation values. The
+  source run did not record a decomposition of the 20.7% decapsulation
+  difference, so the manuscript uses only the isolated-operation values.
+
+Reproducibility:
+  `ppk2_offline_decode.py --benchmark --csv ppk2_sign_windows.csv
+  m4bench/ppk2_cap_log.bin` re-decodes the raw PPK2 capture with the
+  ppk2-api==0.9.2 default calibration constants (no PPK2 device or network is
+  required) and reproduces the 20 genuine signing windows whose mean energy is
+  48.5 mJ (48,487 uJ). `ppk2_sign_windows.csv` lists every PA5 window in the
+  benchmark capture with its start time, duration, average/peak current, and
+  energy, including the region/duration/current classification used for the
+  per-signature mean.

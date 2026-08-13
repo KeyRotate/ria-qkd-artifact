@@ -42,7 +42,12 @@ Full-handshake energy (PPK2 source-meter, 3.3 V, 100 kHz, PA5-delimited) - recap
   Raw waveforms, serial captures, analysis scripts and SHA-256 hashes: ppk2_20260811/
 
 M4 primitive time/energy (from m4bench, per-operation):
-  ML-KEM-512 decap 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 101.3 ms / ~53.4 mJ
+  ML-KEM-512 decap 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 101.3 ms / ~48.5 mJ
+  (20 genuine signing windows; the unfiltered 22-window classifier mean was
+   ~53.4 mJ because it included two post-loop idle-indicator pulses.)
+  The end-to-end demonstration uses deterministic test randomness and a fixed
+  nonce; it supports interoperability/feasibility evidence, not production
+  nonce-freshness validation.
 
 Supplementary files: server_handshake_log.txt (30 entries, 2026-08-07),
 M4_latency_results.txt (n=6, 2026-08-07), ppk2_hs2_capture.bin (single

@@ -95,6 +95,7 @@ int main(void){
     uint8_t pk_eph[KEM_PK], sk_eph[KEM_SK];
     uint8_t r_c[32];
     crypto_kem_keypair(pk_eph, sk_eph);
+    /* Test build: deterministic nonce; not a production freshness source. */
     for(int i=0;i<32;i++) r_c[i]=(uint8_t)(i*7+3);
     size_t off=0;
     pack16(m1+off, CLIENT_ID_LEN); off+=2;

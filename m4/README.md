@@ -2,7 +2,8 @@
 
 This directory contains the bare-metal STM32F407 (Cortex-M4F, 168 MHz) firmware
 and raw evidence for the end-to-end RIA-QKD handshake and the Cortex-M4
-primitive measurements reported in Section V-D / Table III of the paper.
+primitive measurements reported in Section V-D of the paper (the Cortex-M4
+primitives are excluded from Table III; see the paper's Section V-D).
 
 ## Layout
 
@@ -24,12 +25,17 @@ primitive measurements reported in Section V-D / Table III of the paper.
 - `evidence/benchmark/` - per-operation primitive results
   (`results_energy.txt` is the canonical source: ML-KEM-512 decap 881,252
   cycles = 5.245 ms / ~2.17 mJ; ML-DSA-44 sign avg 17.0M cycles = 101.3 ms /
-  ~53.4 mJ; `results.txt` is an earlier, superseded provenance pass whose
+  ~48.5 mJ for 20 genuine signing windows. The original duration-only
+  classifier retained a 53.4 mJ mean from 22 windows because two post-loop
+  idle-indicator pulses were included; that unfiltered value is provenance
+  only. `results.txt` is an earlier, superseded provenance pass whose
   differing cycle counts and rejection-sampling statistics are retained only
   for provenance; the source record did not preserve the cause of the
   differences). The canonical decap value is an isolated-operation result;
   the separate back-to-back block cross-check (2.616 mJ/op) is an aggregate
   measurement and is not used in the manuscript.
+  The corrected Linux client-path baseline uses the fixed client-key matching
+  script; the earlier verification-invalid pass is not used in Table III.
 - `evidence/benchmark/archive/` - `m4bench_evidence.tar.gz` (the full
   benchmark workspace: the pqm4/PQClean ML-KEM-512 and ML-DSA-44 sources under
   `m4bench/pqc/`, the benchmark firmware `m4bench/src/`, build scripts, the
@@ -44,8 +50,14 @@ primitive measurements reported in Section V-D / Table III of the paper.
   runs with the raw power traces (`ppk2_capture{1,2,3}.bin`), the relay-captured
   serial streams including the M4 results frames (`relay_serial_run{1,2,3}.bin`,
   accepted=1), analysis scripts, RESULTS_20260811.md and SHA-256 hashes.
-  Energy: 0.29 J over ~0.8 s; 1.59-1.64 J over ~4.2-4.3 s at ~110-115 mA
-  average current.
+   Energy: 0.29 J over ~0.8 s; 1.59-1.64 J over ~4.2-4.3 s at ~110-115 mA
+   average current.
+
+The end-to-end demonstration firmware uses a deterministic test `randombytes`
+source and a fixed test nonce. It therefore supports interoperability and
+feasibility evidence, but it is not a production randomness or nonce-freshness
+validation. The deployed test credentials are not published, so the firmware
+cannot be rebuilt into the measured session from this package alone.
 
 ## Experimental path (2026-08-07 and 2026-08-11)
 
