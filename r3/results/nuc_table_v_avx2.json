@@ -1,0 +1,173 @@
+{
+  "label": "nuc_x86_64_avx2_2.7GHz_noturbo",
+  "oqs_version": "0.15.0",
+  "cpu_model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
+  "cycle_counter": "rdtscp",
+  "msg_bytes": 32,
+  "kems": {
+    "ML-KEM-512": {
+      "pk_bytes": 800, "sk_bytes": 1632, "ct_bytes": 768, "ss_bytes": 32,
+      "keygen": {"med_us": 11.579, "mean_us": 12.187, "std_us": 1.801, "iqr_us": 0.083, "med_cycles": 31291, "mean_cycles": 32925, "n": 1000},
+      "encap": {"med_us": 12.741, "mean_us": 14.602, "std_us": 3.125, "iqr_us": 4.386, "med_cycles": 34451, "mean_cycles": 39454, "n": 1000},
+      "decap": {"med_us": 13.623, "mean_us": 14.679, "std_us": 2.225, "iqr_us": 1.386, "med_cycles": 36848, "mean_cycles": 39684, "n": 1000}
+    },
+    "ML-KEM-768": {
+      "pk_bytes": 1184, "sk_bytes": 2400, "ct_bytes": 1088, "ss_bytes": 32,
+      "keygen": {"med_us": 18.558, "mean_us": 19.102, "std_us": 2.042, "iqr_us": 0.144, "med_cycles": 50223, "mean_cycles": 51691, "n": 1000},
+      "encap": {"med_us": 19.250, "mean_us": 19.447, "std_us": 1.350, "iqr_us": 0.065, "med_cycles": 52095, "mean_cycles": 52627, "n": 1000},
+      "decap": {"med_us": 21.392, "mean_us": 21.772, "std_us": 1.801, "iqr_us": 0.046, "med_cycles": 57916, "mean_cycles": 58938, "n": 1000}
+    },
+    "ML-KEM-1024": {
+      "pk_bytes": 1568, "sk_bytes": 3168, "ct_bytes": 1568, "ss_bytes": 32,
+      "keygen": {"med_us": 25.616, "mean_us": 26.149, "std_us": 2.273, "iqr_us": 0.199, "med_cycles": 69353, "mean_cycles": 70795, "n": 1000},
+      "encap": {"med_us": 26.961, "mean_us": 27.752, "std_us": 3.822, "iqr_us": 0.099, "med_cycles": 72988, "mean_cycles": 75123, "n": 1000},
+      "decap": {"med_us": 30.289, "mean_us": 30.813, "std_us": 2.481, "iqr_us": 0.102, "med_cycles": 82036, "mean_cycles": 83450, "n": 1000}
+    },
+    "FrodoKEM-640-AES": {
+      "pk_bytes": 9616, "sk_bytes": 19888, "ct_bytes": 9720, "ss_bytes": 16,
+      "keygen": {"med_us": 473.284, "mean_us": 482.026, "std_us": 40.435, "iqr_us": 3.213, "med_cycles": 1283364, "mean_cycles": 1307045, "n": 1000},
+      "encap": {"med_us": 673.767, "mean_us": 683.395, "std_us": 35.088, "iqr_us": 7.768, "med_cycles": 1827054, "mean_cycles": 1853095, "n": 500},
+      "decap": {"med_us": 652.011, "mean_us": 656.449, "std_us": 21.906, "iqr_us": 5.558, "med_cycles": 1768109, "mean_cycles": 1780099, "n": 500}
+    },
+    "FrodoKEM-976-AES": {
+      "pk_bytes": 15632, "sk_bytes": 31296, "ct_bytes": 15744, "ss_bytes": 24,
+      "keygen": {"med_us": 951.767, "mean_us": 960.599, "std_us": 36.540, "iqr_us": 7.021, "med_cycles": 2581049, "mean_cycles": 2604929, "n": 500},
+      "encap": {"med_us": 1263.337, "mean_us": 1297.197, "std_us": 129.990, "iqr_us": 17.195, "med_cycles": 3425860, "mean_cycles": 3517716, "n": 500},
+      "decap": {"med_us": 1219.776, "mean_us": 1237.269, "std_us": 68.834, "iqr_us": 15.228, "med_cycles": 3307688, "mean_cycles": 3355140, "n": 500}
+    },
+    "FrodoKEM-1344-AES": {
+      "pk_bytes": 21520, "sk_bytes": 43088, "ct_bytes": 21632, "ss_bytes": 32,
+      "keygen": {"med_us": 1704.657, "mean_us": 1726.203, "std_us": 89.418, "iqr_us": 22.603, "med_cycles": 4622800, "mean_cycles": 4681157, "n": 500},
+      "encap": {"med_us": 2176.865, "mean_us": 2196.604, "std_us": 61.201, "iqr_us": 25.464, "med_cycles": 5903290, "mean_cycles": 5956827, "n": 500},
+      "decap": {"med_us": 2106.725, "mean_us": 2124.397, "std_us": 52.620, "iqr_us": 28.529, "med_cycles": 5713052, "mean_cycles": 5761027, "n": 500}
+    },
+    "HQC-128": {
+      "pk_bytes": 2249, "sk_bytes": 2305, "ct_bytes": 4433, "ss_bytes": 64,
+      "keygen": {"med_us": 9505.650, "mean_us": 9548.903, "std_us": 155.820, "iqr_us": 85.427, "med_cycles": 25778436, "mean_cycles": 25895892, "n": 100},
+      "encap": {"med_us": 19232.258, "mean_us": 19517.024, "std_us": 1214.118, "iqr_us": 235.258, "med_cycles": 52156813, "mean_cycles": 52928797, "n": 100},
+      "decap": {"med_us": 30835.218, "mean_us": 31159.119, "std_us": 1112.984, "iqr_us": 249.269, "med_cycles": 83624238, "mean_cycles": 84502101, "n": 100}
+    },
+    "HQC-192": {
+      "pk_bytes": 4522, "sk_bytes": 4586, "ct_bytes": 8978, "ss_bytes": 64,
+      "keygen": {"med_us": 29112.646, "mean_us": 29203.073, "std_us": 439.703, "iqr_us": 303.382, "med_cycles": 78952517, "mean_cycles": 79197444, "n": 100},
+      "encap": {"med_us": 58387.117, "mean_us": 58482.605, "std_us": 264.540, "iqr_us": 252.930, "med_cycles": 158344606, "mean_cycles": 158603158, "n": 20},
+      "decap": {"med_us": 90269.636, "mean_us": 90340.904, "std_us": 382.671, "iqr_us": 477.236, "med_cycles": 244808882, "mean_cycles": 245002638, "n": 20}
+    },
+    "HQC-256": {
+      "pk_bytes": 7245, "sk_bytes": 7317, "ct_bytes": 14421, "ss_bytes": 64,
+      "keygen": {"med_us": 53224.655, "mean_us": 53322.019, "std_us": 443.385, "iqr_us": 220.500, "med_cycles": 144343064, "mean_cycles": 144607639, "n": 20},
+      "encap": {"med_us": 107054.875, "mean_us": 107248.228, "std_us": 723.943, "iqr_us": 358.864, "med_cycles": 290331382, "mean_cycles": 290854993, "n": 20},
+      "decap": {"med_us": 167242.479, "mean_us": 167823.602, "std_us": 2389.359, "iqr_us": 677.448, "med_cycles": 453559092, "mean_cycles": 455134808, "n": 20}
+    },
+    "Classic-McEliece-348864": {
+      "pk_bytes": 261120, "sk_bytes": 6492, "ct_bytes": 96, "ss_bytes": 32,
+      "keygen": {"med_us": 58745.218, "mean_us": 61806.756, "std_us": 8826.546, "iqr_us": 12273.946, "med_cycles": 159314493, "mean_cycles": 167617143, "n": 20},
+      "encap": {"med_us": 23.184, "mean_us": 24.203, "std_us": 7.234, "iqr_us": 8.810, "med_cycles": 62596, "mean_cycles": 65386, "n": 1000},
+      "decap": {"med_us": 55.845, "mean_us": 56.913, "std_us": 4.924, "iqr_us": 0.207, "med_cycles": 151293, "mean_cycles": 154184, "n": 1000}
+    },
+    "X25519": {
+      "pk_bytes": 32, "sk_bytes": 32, "ct_bytes": 32, "ss_bytes": 32,
+      "keygen": {"med_us": 64.058, "mean_us": 65.054, "std_us": 4.547, "iqr_us": 0.279, "med_cycles": 173607, "mean_cycles": 176267, "n": 1000},
+      "encap": {"med_us": 120.331, "mean_us": 126.183, "std_us": 20.743, "iqr_us": 1.022, "med_cycles": 326191, "mean_cycles": 342031, "n": 1000},
+      "decap": {"med_us": 55.680, "mean_us": 56.947, "std_us": 5.515, "iqr_us": 0.174, "med_cycles": 150871, "mean_cycles": 154305, "n": 1000}
+    },
+    "X25519+ML-KEM-768": {
+      "pk_bytes": 1216, "sk_bytes": 2432, "ct_bytes": 1120, "ss_bytes": 32,
+      "keygen": {"med_us": 84.424, "mean_us": 85.946, "std_us": 6.358, "iqr_us": 0.554, "med_cycles": 228798, "mean_cycles": 232912, "n": 1000},
+      "encap": {"med_us": 153.285, "mean_us": 157.336, "std_us": 14.389, "iqr_us": 1.642, "med_cycles": 415348, "mean_cycles": 426326, "n": 1000},
+      "decap": {"med_us": 88.043, "mean_us": 92.193, "std_us": 12.226, "iqr_us": 0.461, "med_cycles": 238573, "mean_cycles": 249790, "n": 1000}
+    }
+  },
+  "signatures": {
+    "ML-DSA-44": {
+      "pk_bytes": 1312, "sk_bytes": 2560, "sig_max_bytes": 2420, "emp_sig_min": 2420, "emp_sig_mean": 2420.00, "emp_sig_max": 2420,
+      "keygen": {"med_us": 36.964, "mean_us": 38.715, "std_us": 5.729, "iqr_us": 0.274, "med_cycles": 100134, "mean_cycles": 104869, "n": 1000},
+      "sign": {"med_us": 80.317, "mean_us": 98.189, "std_us": 53.073, "iqr_us": 59.172, "med_cycles": 217676, "mean_cycles": 266125, "n": 1000},
+      "verify": {"med_us": 34.857, "mean_us": 35.682, "std_us": 3.202, "iqr_us": 0.100, "med_cycles": 94427, "mean_cycles": 96653, "n": 1000}
+    },
+    "ML-DSA-65": {
+      "pk_bytes": 1952, "sk_bytes": 4032, "sig_max_bytes": 3309, "emp_sig_min": 3309, "emp_sig_mean": 3309.00, "emp_sig_max": 3309,
+      "keygen": {"med_us": 62.394, "mean_us": 63.306, "std_us": 4.240, "iqr_us": 0.246, "med_cycles": 169091, "mean_cycles": 171561, "n": 1000},
+      "sign": {"med_us": 129.026, "mean_us": 156.487, "std_us": 94.515, "iqr_us": 98.647, "med_cycles": 349773, "mean_cycles": 424220, "n": 1000},
+      "verify": {"med_us": 57.522, "mean_us": 60.345, "std_us": 15.630, "iqr_us": 0.265, "med_cycles": 155895, "mean_cycles": 163529, "n": 1000}
+    },
+    "ML-DSA-87": {
+      "pk_bytes": 2592, "sk_bytes": 4896, "sig_max_bytes": 4627, "emp_sig_min": 4627, "emp_sig_mean": 4627.00, "emp_sig_max": 4627,
+      "keygen": {"med_us": 98.594, "mean_us": 101.976, "std_us": 11.670, "iqr_us": 1.016, "med_cycles": 267213, "mean_cycles": 276366, "n": 1000},
+      "sign": {"med_us": 170.941, "mean_us": 199.476, "std_us": 89.655, "iqr_us": 98.125, "med_cycles": 463434, "mean_cycles": 540755, "n": 1000},
+      "verify": {"med_us": 91.897, "mean_us": 94.121, "std_us": 6.801, "iqr_us": 0.277, "med_cycles": 249102, "mean_cycles": 255113, "n": 1000}
+    },
+    "Falcon-512": {
+      "pk_bytes": 897, "sk_bytes": 1281, "sig_max_bytes": 752, "emp_sig_min": 649, "emp_sig_mean": 655.06, "emp_sig_max": 662,
+      "keygen": {"med_us": 8646.665, "mean_us": 9327.591, "std_us": 2272.460, "iqr_us": 2163.904, "med_cycles": 23447178, "mean_cycles": 25295651, "n": 100},
+      "sign": {"med_us": 328.600, "mean_us": 332.880, "std_us": 25.396, "iqr_us": 5.591, "med_cycles": 890975, "mean_cycles": 902554, "n": 1000},
+      "verify": {"med_us": 58.545, "mean_us": 59.426, "std_us": 4.338, "iqr_us": 0.095, "med_cycles": 158632, "mean_cycles": 161014, "n": 1000}
+    },
+    "Falcon-padded-512": {
+      "pk_bytes": 897, "sk_bytes": 1281, "sig_max_bytes": 666, "emp_sig_min": 666, "emp_sig_mean": 666.00, "emp_sig_max": 666,
+      "keygen": {"med_us": 8368.841, "mean_us": 9274.494, "std_us": 2539.237, "iqr_us": 2321.684, "med_cycles": 22695576, "mean_cycles": 25151622, "n": 100},
+      "sign": {"med_us": 331.856, "mean_us": 334.444, "std_us": 12.803, "iqr_us": 6.546, "med_cycles": 899831, "mean_cycles": 906821, "n": 1000},
+      "verify": {"med_us": 59.743, "mean_us": 60.543, "std_us": 3.788, "iqr_us": 0.166, "med_cycles": 161880, "mean_cycles": 164043, "n": 1000}
+    },
+    "Falcon-1024": {
+      "pk_bytes": 1793, "sk_bytes": 2305, "sig_max_bytes": 1462, "emp_sig_min": 1262, "emp_sig_mean": 1270.62, "emp_sig_max": 1281,
+      "keygen": {"med_us": 26012.359, "mean_us": 27772.989, "std_us": 6133.730, "iqr_us": 4667.452, "med_cycles": 70541719, "mean_cycles": 75318455, "n": 100},
+      "sign": {"med_us": 661.090, "mean_us": 667.348, "std_us": 27.285, "iqr_us": 10.942, "med_cycles": 1792693, "mean_cycles": 1809578, "n": 500},
+      "verify": {"med_us": 120.065, "mean_us": 121.341, "std_us": 5.124, "iqr_us": 0.589, "med_cycles": 325471, "mean_cycles": 328903, "n": 1000}
+    },
+    "Falcon-padded-1024": {
+      "pk_bytes": 1793, "sk_bytes": 2305, "sig_max_bytes": 1280, "emp_sig_min": 1280, "emp_sig_mean": 1280.00, "emp_sig_max": 1280,
+      "keygen": {"med_us": 26328.484, "mean_us": 29295.548, "std_us": 9591.796, "iqr_us": 6117.493, "med_cycles": 71400600, "mean_cycles": 79447812, "n": 100},
+      "sign": {"med_us": 671.682, "mean_us": 699.612, "std_us": 71.244, "iqr_us": 19.520, "med_cycles": 1821100, "mean_cycles": 1896963, "n": 500},
+      "verify": {"med_us": 121.700, "mean_us": 124.009, "std_us": 8.505, "iqr_us": 0.897, "med_cycles": 329894, "mean_cycles": 336125, "n": 1000}
+    },
+    "SLH_DSA_PURE_SHA2_128F": {
+      "pk_bytes": 32, "sk_bytes": 64, "sig_max_bytes": 17088, "emp_sig_min": 17088, "emp_sig_mean": 17088.00, "emp_sig_max": 17088,
+      "keygen": {"med_us": 1655.784, "mean_us": 1677.188, "std_us": 70.608, "iqr_us": 13.534, "med_cycles": 4490368, "mean_cycles": 4548256, "n": 500},
+      "sign": {"med_us": 39213.063, "mean_us": 39556.804, "std_us": 1531.473, "iqr_us": 416.784, "med_cycles": 106342314, "mean_cycles": 107276253, "n": 100},
+      "verify": {"med_us": 2292.230, "mean_us": 2311.607, "std_us": 62.084, "iqr_us": 31.231, "med_cycles": 6216314, "mean_cycles": 6268802, "n": 500}
+    },
+    "SLH_DSA_PURE_SHA2_128S": {
+      "pk_bytes": 32, "sk_bytes": 64, "sig_max_bytes": 7856, "emp_sig_min": 7856, "emp_sig_mean": 7856.00, "emp_sig_max": 7856,
+      "keygen": {"med_us": 106663.102, "mean_us": 106828.361, "std_us": 562.585, "iqr_us": 738.636, "med_cycles": 289267634, "mean_cycles": 289716395, "n": 20},
+      "sign": {"med_us": 832000.120, "mean_us": 833777.490, "std_us": 6028.819, "iqr_us": 4182.002, "med_cycles": 2256379460, "mean_cycles": 2261199552, "n": 5},
+      "verify": {"med_us": 822.856, "mean_us": 863.341, "std_us": 122.693, "iqr_us": 17.075, "med_cycles": 2231362, "mean_cycles": 2341127, "n": 500}
+    },
+    "SLH_DSA_PURE_SHA2_192F": {
+      "pk_bytes": 48, "sk_bytes": 96, "sig_max_bytes": 35664, "emp_sig_min": 35664, "emp_sig_mean": 35664.00, "emp_sig_max": 35664,
+      "keygen": {"med_us": 2421.558, "mean_us": 2454.699, "std_us": 85.845, "iqr_us": 58.548, "med_cycles": 6566919, "mean_cycles": 6656784, "n": 500},
+      "sign": {"med_us": 65023.883, "mean_us": 65053.445, "std_us": 515.911, "iqr_us": 668.912, "med_cycles": 176341967, "mean_cycles": 176422758, "n": 20},
+      "verify": {"med_us": 3351.464, "mean_us": 3397.515, "std_us": 128.903, "iqr_us": 76.284, "med_cycles": 9088711, "mean_cycles": 9213600, "n": 500}
+    },
+    "SLH_DSA_PURE_SHA2_192S": {
+      "pk_bytes": 48, "sk_bytes": 96, "sig_max_bytes": 16224, "emp_sig_min": 16224, "emp_sig_mean": 16224.00, "emp_sig_max": 16224,
+      "keygen": {"med_us": 156836.908, "mean_us": 158323.003, "std_us": 5050.255, "iqr_us": 2795.166, "med_cycles": 425338058, "mean_cycles": 429368732, "n": 20},
+      "sign": {"med_us": 1469190.593, "mean_us": 1470336.558, "std_us": 8315.293, "iqr_us": 7743.893, "med_cycles": 3984438538, "mean_cycles": 3987546286, "n": 5},
+      "verify": {"med_us": 1173.927, "mean_us": 1186.745, "std_us": 38.805, "iqr_us": 5.355, "med_cycles": 3183571, "mean_cycles": 3218256, "n": 500}
+    },
+    "SLH_DSA_PURE_SHA2_256F": {
+      "pk_bytes": 64, "sk_bytes": 128, "sig_max_bytes": 49856, "emp_sig_min": 49856, "emp_sig_mean": 49856.00, "emp_sig_max": 49856,
+      "keygen": {"med_us": 6395.181, "mean_us": 6432.534, "std_us": 144.970, "iqr_us": 80.020, "med_cycles": 17343385, "mean_cycles": 17444574, "n": 100},
+      "sign": {"med_us": 133237.077, "mean_us": 133516.018, "std_us": 766.813, "iqr_us": 1064.019, "med_cycles": 361335615, "mean_cycles": 362092480, "n": 20},
+      "verify": {"med_us": 3507.354, "mean_us": 3547.287, "std_us": 89.430, "iqr_us": 48.362, "med_cycles": 9511693, "mean_cycles": 9619874, "n": 500}
+    },
+    "SLH_DSA_PURE_SHA2_256S": {
+      "pk_bytes": 64, "sk_bytes": 128, "sig_max_bytes": 29792, "emp_sig_min": 29792, "emp_sig_mean": 29792.00, "emp_sig_max": 29792,
+      "keygen": {"med_us": 103042.400, "mean_us": 110724.114, "std_us": 14444.475, "iqr_us": 6236.149, "med_cycles": 279447895, "mean_cycles": 300281271, "n": 20},
+      "sign": {"med_us": 1313191.193, "mean_us": 1411191.299, "std_us": 161790.741, "iqr_us": 87161.128, "med_cycles": 3561368630, "mean_cycles": 3827144222, "n": 5},
+      "verify": {"med_us": 1753.453, "mean_us": 1783.943, "std_us": 74.313, "iqr_us": 35.604, "med_cycles": 4755038, "mean_cycles": 4837663, "n": 500}
+    },
+    "Ed25519": {
+      "pk_bytes": 32, "sk_bytes": 32, "sig_max_bytes": 64, "emp_sig_min": 64, "emp_sig_mean": 64.00, "emp_sig_max": 64,
+      "keygen": {"med_us": 65.686, "mean_us": 67.589, "std_us": 7.732, "iqr_us": 0.345, "med_cycles": 178003, "mean_cycles": 183151, "n": 1000},
+      "sign": {"med_us": 63.176, "mean_us": 65.231, "std_us": 7.569, "iqr_us": 0.434, "med_cycles": 171211, "mean_cycles": 176767, "n": 1000},
+      "verify": {"med_us": 164.419, "mean_us": 169.761, "std_us": 18.589, "iqr_us": 6.525, "med_cycles": 445765, "mean_cycles": 460212, "n": 1000}
+    },
+    "Ed25519+ML-DSA-65": {
+      "pk_bytes": 1984, "sk_bytes": 4064, "sig_max_bytes": 3373, "emp_sig_min": 3373, "emp_sig_mean": 3373.00, "emp_sig_max": 3373,
+      "keygen": {"med_us": 131.112, "mean_us": 133.882, "std_us": 9.874, "iqr_us": 0.722, "med_cycles": 355339, "mean_cycles": 362849, "n": 1000},
+      "sign": {"med_us": 200.481, "mean_us": 228.412, "std_us": 91.815, "iqr_us": 103.122, "med_cycles": 543179, "mean_cycles": 619201, "n": 1000},
+      "verify": {"med_us": 221.559, "mean_us": 228.071, "std_us": 17.596, "iqr_us": 6.721, "med_cycles": 600657, "mean_cycles": 618292, "n": 1000}
+    }
+  }
+}

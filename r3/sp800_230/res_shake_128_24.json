@@ -1,0 +1,1 @@
+{"alg": "SLH-DSA-SHAKE-128-24", "pk_bytes": 32, "sk_bytes": 64, "sig_bytes": 3856, "keygen_ms": 712516.714, "keygen_cycles": 1932343788156, "sign_ms": 872006.673, "sign_cycles": 2364880215500, "verified": 1}

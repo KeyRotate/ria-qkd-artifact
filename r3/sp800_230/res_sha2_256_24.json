@@ -1,0 +1,1 @@
+{"alg": "SLH-DSA-SHA2-256-24", "pk_bytes": 64, "sk_bytes": 128, "sig_bytes": 14944, "keygen_ms": 413712.104, "keygen_cycles": 1121986330765, "sign_ms": 878001.402, "sign_cycles": 2381137909860, "verified": 1}

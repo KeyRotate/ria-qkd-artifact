@@ -1,0 +1,4 @@
+{"alg": "SLH-DSA-SHA2-128-24", "pk_bytes": 32, "sig_bytes": 3856, "verify_med_us": 97.090, "verify_mean_us": 99.896, "verify_std_us": 9.019, "verify_iqr_us": 0.138, "verify_med_cycles": 263213, "verify_mean_cycles": 270809, "n": 1000}
+{"alg": "SLH-DSA-SHAKE-128-24", "pk_bytes": 32, "sig_bytes": 3856, "verify_med_us": 171.475, "verify_mean_us": 173.202, "verify_std_us": 12.699, "verify_iqr_us": 0.204, "verify_med_cycles": 464930, "verify_mean_cycles": 469605, "n": 1000}
+{"alg": "SLH-DSA-SHA2-192-24", "pk_bytes": 48, "sig_bytes": 7752, "verify_med_us": 174.631, "verify_mean_us": 178.654, "verify_std_us": 10.656, "verify_iqr_us": 2.156, "verify_med_cycles": 473500, "verify_mean_cycles": 484394, "n": 1000}
+{"alg": "SLH-DSA-SHA2-256-24", "pk_bytes": 64, "sig_bytes": 14944, "verify_med_us": 227.014, "verify_mean_us": 231.051, "verify_std_us": 17.235, "verify_iqr_us": 3.186, "verify_med_cycles": 615564, "verify_mean_cycles": 626487, "n": 1000}

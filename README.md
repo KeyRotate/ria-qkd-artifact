@@ -22,6 +22,29 @@ This repository contains the code and scripts used to reproduce the main results
 > different credential and record-layer choices, so the manuscript retains it
 > only as a qualitative trust-model comparison rather than a measured result.
 
+## Revision R3 (artifact-v2.0) additions
+
+The `r3/` directory adds everything needed to reproduce the Revision R3 results
+(Tables II, III, V, VI, VII and Figures 4, 5). See `r3/README.md` for full details.
+
+- `r3/benchmarks/bench_table_v.c`, `bench_table_vi.c` — pure-C primitive and
+  full-client-path benchmarks (Intel NUC x86-64 AVX2 + portable clean C, and
+  Raspberry Pi 2B ARMv7), with cycle counts and median/IQR reporting.
+- `r3/sp800_230/` — FIPS 205 `slh_dsa_c` reference code extended with the six
+  NIST SP 800-230 (IPD, Apr 2026) limited-signature parameter sets
+  (`SP800_230.patch` is the exact diff), plus verified signature test vectors.
+- `r3/benchmarks/bb84_qkd_model.py` — three-intensity decoy-state BB84 with
+  asymptotic GLLP and finite-key composable rates, DWDM parallel-channel
+  (M=1..32), block-size (N=1e6..1e10) and repetition-rate scaling.
+- `r3/benchmarks/wire_accounting.py` — exact wire-byte formulas; asserts the
+  serializer sizes (904+4825+835+55 = 6619 B) against `common/protocol.py`.
+- `r3/results/` — raw measurements from both platforms.
+- `r3/build/build.sh` — liboqs build + benchmark compile/run commands.
+
+> Scope note (artifact-v2.0): the R3 measurements are software-path benchmarks on
+> the NUC and Raspberry Pi 2B; they do not validate a physical HSM or QKD device.
+> The Cortex-M4 energy evidence (Sec. V-D) is unchanged from artifact-v1.8.1 (`m4/`).
+
 ## Requirements
 
 - Python 3.11+

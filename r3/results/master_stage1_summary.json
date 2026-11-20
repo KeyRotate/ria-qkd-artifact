@@ -1,0 +1,639 @@
+{
+  "table_v_kems": [
+    {
+      "alg": "ML-KEM-512",
+      "pk_bytes": 800,
+      "ct_bytes": 768,
+      "nuc_avx2_enc_us": 12.7,
+      "nuc_avx2_dec_us": 13.6,
+      "nuc_clean_enc_us": 38.5,
+      "nuc_clean_dec_us": 45.5,
+      "rpi_enc_ms": 1.43,
+      "rpi_dec_ms": 1.76,
+      "ria_wire": 6619
+    },
+    {
+      "alg": "ML-KEM-768",
+      "pk_bytes": 1184,
+      "ct_bytes": 1088,
+      "nuc_avx2_enc_us": 19.2,
+      "nuc_avx2_dec_us": 21.4,
+      "nuc_clean_enc_us": 60.5,
+      "nuc_clean_dec_us": 70.3,
+      "rpi_enc_ms": 2.24,
+      "rpi_dec_ms": 2.71,
+      "ria_wire": 8347
+    },
+    {
+      "alg": "ML-KEM-1024",
+      "pk_bytes": 1568,
+      "ct_bytes": 1568,
+      "nuc_avx2_enc_us": 27.0,
+      "nuc_avx2_dec_us": 30.3,
+      "nuc_clean_enc_us": 88.6,
+      "nuc_clean_dec_us": 101.8,
+      "rpi_enc_ms": 3.47,
+      "rpi_dec_ms": 4.12,
+      "ria_wire": 10555
+    },
+    {
+      "alg": "FrodoKEM-640-AES",
+      "pk_bytes": 9616,
+      "ct_bytes": 9720,
+      "nuc_avx2_enc_us": 673.8,
+      "nuc_avx2_dec_us": 652.0,
+      "nuc_clean_enc_us": 953.0,
+      "nuc_clean_dec_us": 918.4,
+      "rpi_enc_ms": 71.95,
+      "rpi_dec_ms": 70.09,
+      "ria_wire": 51107
+    },
+    {
+      "alg": "FrodoKEM-976-AES",
+      "pk_bytes": 15632,
+      "ct_bytes": 15744,
+      "nuc_avx2_enc_us": 1263.3,
+      "nuc_avx2_dec_us": 1219.8,
+      "nuc_clean_enc_us": 1892.3,
+      "nuc_clean_dec_us": 1823.5,
+      "rpi_enc_ms": 162.65,
+      "rpi_dec_ms": 158.32,
+      "ria_wire": 81211
+    },
+    {
+      "alg": "FrodoKEM-1344-AES",
+      "pk_bytes": 21520,
+      "ct_bytes": 21632,
+      "nuc_avx2_enc_us": 2176.9,
+      "nuc_avx2_dec_us": 2106.7,
+      "nuc_clean_enc_us": 3296.5,
+      "nuc_clean_dec_us": 3191.8,
+      "rpi_enc_ms": 297.22,
+      "rpi_dec_ms": 291.44,
+      "ria_wire": 110651
+    },
+    {
+      "alg": "HQC-128",
+      "pk_bytes": 2249,
+      "ct_bytes": 4433,
+      "nuc_avx2_enc_us": 19232.3,
+      "nuc_avx2_dec_us": 30835.2,
+      "nuc_clean_enc_us": 19293.2,
+      "nuc_clean_dec_us": 31279.6,
+      "rpi_enc_ms": 613.1,
+      "rpi_dec_ms": 945.66,
+      "ria_wire": 20512
+    },
+    {
+      "alg": "HQC-192",
+      "pk_bytes": 4522,
+      "ct_bytes": 8978,
+      "nuc_avx2_enc_us": 58387.1,
+      "nuc_avx2_dec_us": 90269.6,
+      "nuc_clean_enc_us": 59879.1,
+      "nuc_clean_dec_us": 90722.2,
+      "rpi_enc_ms": 1875.12,
+      "rpi_dec_ms": 2846.71,
+      "ria_wire": 38693
+    },
+    {
+      "alg": "HQC-256",
+      "pk_bytes": 7245,
+      "ct_bytes": 14421,
+      "nuc_avx2_enc_us": 107054.9,
+      "nuc_avx2_dec_us": 167242.5,
+      "nuc_clean_enc_us": 107586.6,
+      "nuc_clean_dec_us": 167275.9,
+      "rpi_enc_ms": 3431.82,
+      "rpi_dec_ms": 5228.46,
+      "ria_wire": 60468
+    },
+    {
+      "alg": "Classic-McEliece-348864",
+      "pk_bytes": 261120,
+      "ct_bytes": 96,
+      "nuc_avx2_enc_us": 23.2,
+      "nuc_avx2_dec_us": 55.8,
+      "nuc_clean_enc_us": 71.8,
+      "nuc_clean_dec_us": 23686.2,
+      "rpi_enc_ms": 1.37,
+      "rpi_dec_ms": 157.24,
+      "ria_wire": 525247
+    },
+    {
+      "alg": "X25519+ML-KEM-768",
+      "pk_bytes": 1216,
+      "ct_bytes": 1120,
+      "nuc_avx2_enc_us": 153.3,
+      "nuc_avx2_dec_us": 88.0,
+      "nuc_clean_enc_us": 194.9,
+      "nuc_clean_dec_us": 137.0,
+      "rpi_enc_ms": 4.78,
+      "rpi_dec_ms": 4.55,
+      "ria_wire": 9460
+    }
+  ],
+  "table_v_sigs": [
+    {
+      "alg": "ML-DSA-44",
+      "pk_bytes": 1312,
+      "sig_bytes": 2420,
+      "sig_max_bytes": 2420,
+      "nuc_avx2_sign_us": 80.3,
+      "nuc_avx2_ver_us": 34.9,
+      "nuc_avx2_ver_cyc": 94427,
+      "nuc_clean_ver_us": 141.0,
+      "nuc_clean_ver_cyc": 382283,
+      "rpi_sign_ms": 9.64,
+      "rpi_ver_ms": 4.42,
+      "ria_wire": 6619
+    },
+    {
+      "alg": "ML-DSA-65",
+      "pk_bytes": 1952,
+      "sig_bytes": 3309,
+      "sig_max_bytes": 3309,
+      "nuc_avx2_sign_us": 129.0,
+      "nuc_avx2_ver_us": 57.5,
+      "nuc_avx2_ver_cyc": 155895,
+      "nuc_clean_ver_us": 222.7,
+      "nuc_clean_ver_cyc": 603718,
+      "rpi_sign_ms": 18.28,
+      "rpi_ver_ms": 7.6,
+      "ria_wire": 7508
+    },
+    {
+      "alg": "ML-DSA-87",
+      "pk_bytes": 2592,
+      "sig_bytes": 4627,
+      "sig_max_bytes": 4627,
+      "nuc_avx2_sign_us": 170.9,
+      "nuc_avx2_ver_us": 91.9,
+      "nuc_avx2_ver_cyc": 249102,
+      "nuc_clean_ver_us": 352.7,
+      "nuc_clean_ver_cyc": 956503,
+      "rpi_sign_ms": 22.0,
+      "rpi_ver_ms": 13.21,
+      "ria_wire": 8826
+    },
+    {
+      "alg": "Falcon-512",
+      "pk_bytes": 897,
+      "sig_bytes": 655,
+      "sig_max_bytes": 752,
+      "nuc_avx2_sign_us": 328.6,
+      "nuc_avx2_ver_us": 58.5,
+      "nuc_avx2_ver_cyc": 158632,
+      "nuc_clean_ver_us": 62.7,
+      "nuc_clean_ver_cyc": 169821,
+      "rpi_sign_ms": 53.2,
+      "rpi_ver_ms": 1.09,
+      "ria_wire": 4854
+    },
+    {
+      "alg": "Falcon-padded-512",
+      "pk_bytes": 897,
+      "sig_bytes": 666,
+      "sig_max_bytes": 666,
+      "nuc_avx2_sign_us": 331.9,
+      "nuc_avx2_ver_us": 59.7,
+      "nuc_avx2_ver_cyc": 161880,
+      "nuc_clean_ver_us": 64.6,
+      "nuc_clean_ver_cyc": 175136,
+      "rpi_sign_ms": 53.08,
+      "rpi_ver_ms": 1.1,
+      "ria_wire": 4865
+    },
+    {
+      "alg": "Falcon-1024",
+      "pk_bytes": 1793,
+      "sig_bytes": 1271,
+      "sig_max_bytes": 1462,
+      "nuc_avx2_sign_us": 661.1,
+      "nuc_avx2_ver_us": 120.1,
+      "nuc_avx2_ver_cyc": 325471,
+      "nuc_clean_ver_us": 128.8,
+      "nuc_clean_ver_cyc": 349063,
+      "rpi_sign_ms": 115.58,
+      "rpi_ver_ms": 2.13,
+      "ria_wire": 5470
+    },
+    {
+      "alg": "Falcon-padded-1024",
+      "pk_bytes": 1793,
+      "sig_bytes": 1280,
+      "sig_max_bytes": 1280,
+      "nuc_avx2_sign_us": 671.7,
+      "nuc_avx2_ver_us": 121.7,
+      "nuc_avx2_ver_cyc": 329894,
+      "nuc_clean_ver_us": 128.9,
+      "nuc_clean_ver_cyc": 349281,
+      "rpi_sign_ms": 115.7,
+      "rpi_ver_ms": 2.15,
+      "ria_wire": 5479
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_128F",
+      "pk_bytes": 32,
+      "sig_bytes": 17088,
+      "sig_max_bytes": 17088,
+      "nuc_avx2_sign_us": 39213.1,
+      "nuc_avx2_ver_us": 2292.2,
+      "nuc_avx2_ver_cyc": 6216314,
+      "nuc_clean_ver_us": 2414.2,
+      "nuc_clean_ver_cyc": 6547178,
+      "rpi_sign_ms": 317.32,
+      "rpi_ver_ms": 19.8,
+      "ria_wire": 21287
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_128S",
+      "pk_bytes": 32,
+      "sig_bytes": 7856,
+      "sig_max_bytes": 7856,
+      "nuc_avx2_sign_us": 832000.1,
+      "nuc_avx2_ver_us": 822.9,
+      "nuc_avx2_ver_cyc": 2231362,
+      "nuc_clean_ver_us": 803.8,
+      "nuc_clean_ver_cyc": 2179888,
+      "rpi_sign_ms": 6607.57,
+      "rpi_ver_ms": 6.47,
+      "ria_wire": 12055
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_192F",
+      "pk_bytes": 48,
+      "sig_bytes": 35664,
+      "sig_max_bytes": 35664,
+      "nuc_avx2_sign_us": 65023.9,
+      "nuc_avx2_ver_us": 3351.5,
+      "nuc_avx2_ver_cyc": 9088711,
+      "nuc_clean_ver_us": 3387.3,
+      "nuc_clean_ver_cyc": 9185843,
+      "rpi_sign_ms": 604.35,
+      "rpi_ver_ms": 32.67,
+      "ria_wire": 39863
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_192S",
+      "pk_bytes": 48,
+      "sig_bytes": 16224,
+      "sig_max_bytes": 16224,
+      "nuc_avx2_sign_us": 1469190.6,
+      "nuc_avx2_ver_us": 1173.9,
+      "nuc_avx2_ver_cyc": 3183571,
+      "nuc_clean_ver_us": 1229.7,
+      "nuc_clean_ver_cyc": 3334729,
+      "rpi_sign_ms": 14325.39,
+      "rpi_ver_ms": 12.71,
+      "ria_wire": 20423
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_256F",
+      "pk_bytes": 64,
+      "sig_bytes": 49856,
+      "sig_max_bytes": 49856,
+      "nuc_avx2_sign_us": 133237.1,
+      "nuc_avx2_ver_us": 3507.4,
+      "nuc_avx2_ver_cyc": 9511693,
+      "nuc_clean_ver_us": 3473.8,
+      "nuc_clean_ver_cyc": 9420709,
+      "rpi_sign_ms": 1260.74,
+      "rpi_ver_ms": 33.24,
+      "ria_wire": 54055
+    },
+    {
+      "alg": "SLH_DSA_PURE_SHA2_256S",
+      "pk_bytes": 64,
+      "sig_bytes": 29792,
+      "sig_max_bytes": 29792,
+      "nuc_avx2_sign_us": 1313191.2,
+      "nuc_avx2_ver_us": 1753.5,
+      "nuc_avx2_ver_cyc": 4755038,
+      "nuc_clean_ver_us": 1837.0,
+      "nuc_clean_ver_cyc": 4981795,
+      "rpi_sign_ms": 13813.31,
+      "rpi_ver_ms": 18.21,
+      "ria_wire": 33991
+    },
+    {
+      "alg": "Ed25519+ML-DSA-65",
+      "pk_bytes": 1984,
+      "sig_bytes": 3373,
+      "sig_max_bytes": 3373,
+      "nuc_avx2_sign_us": 200.5,
+      "nuc_avx2_ver_us": 221.6,
+      "nuc_avx2_ver_cyc": 600657,
+      "nuc_clean_ver_us": 388.4,
+      "nuc_clean_ver_cyc": 1053080,
+      "rpi_sign_ms": 17.18,
+      "rpi_ver_ms": 9.51,
+      "ria_wire": 9460
+    },
+    {
+      "alg": "SLH-DSA-SHA2-128-24",
+      "pk_bytes": 32,
+      "sig_bytes": 3856,
+      "sig_max_bytes": 3856,
+      "nuc_sign_s": 520.7,
+      "nuc_keygen_s": 418.9,
+      "nuc_ver_us": 97.1,
+      "nuc_ver_cyc": 263213,
+      "rpi_ver_ms": 1.02,
+      "ria_wire": 8055
+    },
+    {
+      "alg": "SLH-DSA-SHAKE-128-24",
+      "pk_bytes": 32,
+      "sig_bytes": 3856,
+      "sig_max_bytes": 3856,
+      "nuc_sign_s": 872.0,
+      "nuc_keygen_s": 712.5,
+      "nuc_ver_us": 171.5,
+      "nuc_ver_cyc": 464930,
+      "rpi_ver_ms": 5.42,
+      "ria_wire": 8055
+    },
+    {
+      "alg": "SLH-DSA-SHA2-192-24",
+      "pk_bytes": 48,
+      "sig_bytes": 7752,
+      "sig_max_bytes": 7752,
+      "nuc_sign_s": 742.4,
+      "nuc_keygen_s": 387.8,
+      "nuc_ver_us": 174.6,
+      "nuc_ver_cyc": 473500,
+      "rpi_ver_ms": 3.87,
+      "ria_wire": 11951
+    },
+    {
+      "alg": "SLH-DSA-SHA2-256-24",
+      "pk_bytes": 64,
+      "sig_bytes": 14944,
+      "sig_max_bytes": 14944,
+      "nuc_sign_s": 878.0,
+      "nuc_keygen_s": 413.7,
+      "nuc_ver_us": 227.0,
+      "nuc_ver_cyc": 615564,
+      "rpi_ver_ms": 5.2,
+      "ria_wire": 19143
+    }
+  ],
+  "table_vi": [
+    {
+      "scheme": "RIA_QKD_L1",
+      "wire_bytes": 6619,
+      "wire_breakdown": {
+        "CH": 904,
+        "SH": 4825,
+        "CAuth": 835,
+        "SFin": 55,
+        "Total": 6619
+      },
+      "nuc_med_us": 109.4,
+      "nuc_mean_us": 112.8,
+      "nuc_cycles": 296492,
+      "nuc_comp_us": {
+        "verify": 38.15,
+        "keygen": 13.01,
+        "encap": 13.34,
+        "decap": 28.06,
+        "sign": 0.0,
+        "kdf_hash_mac": 19.96
+      },
+      "rpi_med_ms": 11.01,
+      "rpi_mean_ms": 11.04,
+      "rpi_comp_ms": {
+        "verify": 4.446,
+        "keygen": 1.293,
+        "encap": 1.436,
+        "decap": 3.55,
+        "sign": 0.0,
+        "kdf_hash_mac": 0.308
+      }
+    },
+    {
+      "scheme": "RIA_QKD_Falcon",
+      "wire_bytes": 4865,
+      "wire_breakdown": {
+        "CH": 904,
+        "SH": 3071,
+        "CAuth": 835,
+        "SFin": 55,
+        "Total": 4865
+      },
+      "nuc_med_us": 133.6,
+      "nuc_mean_us": 138.6,
+      "nuc_cycles": 362175,
+      "nuc_comp_us": {
+        "verify": 63.93,
+        "keygen": 12.89,
+        "encap": 13.41,
+        "decap": 28.17,
+        "sign": 0.0,
+        "kdf_hash_mac": 19.98
+      },
+      "rpi_med_ms": 7.69,
+      "rpi_mean_ms": 7.71,
+      "rpi_comp_ms": {
+        "verify": 1.131,
+        "keygen": 1.291,
+        "encap": 1.435,
+        "decap": 3.547,
+        "sign": 0.0,
+        "kdf_hash_mac": 0.304
+      }
+    },
+    {
+      "scheme": "RIA_QKD_L3",
+      "wire_bytes": 9236,
+      "wire_breakdown": {
+        "CH": 1288,
+        "SH": 6738,
+        "CAuth": 1155,
+        "SFin": 55,
+        "Total": 9236
+      },
+      "nuc_med_us": 161.0,
+      "nuc_mean_us": 163.1,
+      "nuc_cycles": 436511,
+      "nuc_comp_us": {
+        "verify": 60.82,
+        "keygen": 19.64,
+        "encap": 19.63,
+        "decap": 43.38,
+        "sign": 0.0,
+        "kdf_hash_mac": 19.25
+      },
+      "rpi_med_ms": 18.23,
+      "rpi_mean_ms": 18.29,
+      "rpi_comp_ms": {
+        "verify": 7.68,
+        "keygen": 2.131,
+        "encap": 2.394,
+        "decap": 5.757,
+        "sign": 0.0,
+        "kdf_hash_mac": 0.322
+      }
+    },
+    {
+      "scheme": "RIA_QKD_Hybrid",
+      "wire_bytes": 9460,
+      "wire_breakdown": {
+        "CH": 1320,
+        "SH": 6898,
+        "CAuth": 1187,
+        "SFin": 55,
+        "Total": 9460
+      },
+      "nuc_med_us": 652.3,
+      "nuc_mean_us": 660.1,
+      "nuc_cycles": 1768896,
+      "nuc_comp_us": {
+        "verify": 229.7,
+        "keygen": 89.74,
+        "encap": 146.22,
+        "decap": 163.56,
+        "sign": 0.0,
+        "kdf_hash_mac": 30.39
+      },
+      "rpi_med_ms": 26.93,
+      "rpi_mean_ms": 27.04,
+      "rpi_comp_ms": {
+        "verify": 9.578,
+        "keygen": 2.88,
+        "encap": 4.848,
+        "decap": 9.246,
+        "sign": 0.0,
+        "kdf_hash_mac": 0.477
+      }
+    },
+    {
+      "scheme": "mTLS_PQC",
+      "wire_bytes": 10072,
+      "wire_breakdown": {
+        "CH": 932,
+        "SH": 5220,
+        "CAuth": 3920,
+        "SFin": 0,
+        "Total": 10072
+      },
+      "nuc_med_us": 178.5,
+      "nuc_mean_us": 194.8,
+      "nuc_cycles": 483872,
+      "nuc_comp_us": {
+        "verify": 37.93,
+        "keygen": 12.98,
+        "encap": 0.0,
+        "decap": 14.05,
+        "sign": 102.72,
+        "kdf_hash_mac": 26.65
+      },
+      "rpi_med_ms": 17.79,
+      "rpi_mean_ms": 19.51,
+      "rpi_comp_ms": {
+        "verify": 4.479,
+        "keygen": 1.307,
+        "encap": 0.0,
+        "decap": 1.789,
+        "sign": 11.502,
+        "kdf_hash_mac": 0.428
+      }
+    },
+    {
+      "scheme": "ETSI_TS_104_146_Hybrid",
+      "wire_bytes": 10200,
+      "wire_breakdown": {
+        "CH": 980,
+        "SH": 5284,
+        "CAuth": 3936,
+        "SFin": 0,
+        "Total": 10200
+      },
+      "nuc_med_us": 321.2,
+      "nuc_mean_us": 345.8,
+      "nuc_cycles": 871033,
+      "nuc_comp_us": {
+        "verify": 39.66,
+        "keygen": 85.64,
+        "encap": 0.0,
+        "decap": 77.55,
+        "sign": 106.82,
+        "kdf_hash_mac": 35.58
+      },
+      "rpi_med_ms": 20.38,
+      "rpi_mean_ms": 22.85,
+      "rpi_comp_ms": {
+        "verify": 4.496,
+        "keygen": 2.036,
+        "encap": 0.0,
+        "decap": 3.525,
+        "sign": 12.247,
+        "kdf_hash_mac": 0.535
+      }
+    },
+    {
+      "scheme": "QKD_IPsec_IKEv2",
+      "wire_bytes": 11004,
+      "wire_breakdown": {
+        "IKE_SA_INIT": 840,
+        "IKE_INTERMEDIATE": 1664,
+        "IKE_AUTH": 8500,
+        "Total": 11004
+      },
+      "nuc_med_us": 316.3,
+      "nuc_mean_us": 337.0,
+      "nuc_cycles": 857813,
+      "nuc_comp_us": {
+        "verify": 39.04,
+        "keygen": 83.82,
+        "encap": 0.0,
+        "decap": 75.94,
+        "sign": 108.19,
+        "kdf_hash_mac": 29.5
+      },
+      "rpi_med_ms": 19.97,
+      "rpi_mean_ms": 21.88,
+      "rpi_comp_ms": {
+        "verify": 4.486,
+        "keygen": 2.037,
+        "encap": 0.0,
+        "decap": 3.522,
+        "sign": 11.361,
+        "kdf_hash_mac": 0.467
+      }
+    },
+    {
+      "scheme": "KEMTLS_MutualAuth",
+      "wire_bytes": 3000,
+      "wire_breakdown": {
+        "CH": 932,
+        "SH": 1300,
+        "CAuth": 768,
+        "SFin": 0,
+        "Total": 3000
+      },
+      "nuc_med_us": 66.5,
+      "nuc_mean_us": 67.7,
+      "nuc_cycles": 180132,
+      "nuc_comp_us": {
+        "verify": 0.0,
+        "keygen": 12.33,
+        "encap": 13.01,
+        "decap": 13.83,
+        "sign": 0.0,
+        "kdf_hash_mac": 28.27
+      },
+      "rpi_med_ms": 4.92,
+      "rpi_mean_ms": 4.95,
+      "rpi_comp_ms": {
+        "verify": 0.0,
+        "keygen": 1.285,
+        "encap": 1.434,
+        "decap": 1.781,
+        "sign": 0.0,
+        "kdf_hash_mac": 0.44
+      }
+    }
+  ]
+}

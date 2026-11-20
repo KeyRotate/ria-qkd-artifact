@@ -16,3 +16,10 @@ dist/
 !m4/evidence/**/*.bin
 # Local build workspace created by build_handshake.sh
 m4/e2e-build/
+# R3 (artifact-v2.0) evidence, test vectors, and build script MUST ship
+!r3/results/
+!r3/results/**
+!r3/build/
+!r3/build/**
+!r3/sp800_230/vectors/
+!r3/sp800_230/vectors/**
