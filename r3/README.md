@@ -30,7 +30,9 @@ decoy-state BB84 simulator.
   sizes (904+4825+835+55 = 6619 B) and emits `results/master_stage1_summary.json`.
 - `benchmarks/bb84_qkd_model.py` — three-intensity decoy-state BB84: asymptotic GLLP and
   finite-key (Lim et al. Chernoff bounds) rates; DWDM parallel-channel (M=1..32),
-  block-size (N=1e6..1e10) and repetition-rate scaling. Emits `results/bb84_extended.json`.
+  block-size (N=1e6..1e10) and repetition-rate scaling. The DWDM coexistence impairment
+  (SpRS/FWM + crosstalk) follows Wang et al., Phys. Rev. A 95, 012301 (2017); per-channel
+  values are representative model parameters. Emits `results/bb84_extended.json`.
 - `sp800_230/` — FIPS 205 `slh_dsa_c` reference code extended with the six NIST SP 800-230
   (IPD, Apr 2026) limited-signature parameter sets. `SP800_230.patch` is the exact diff
   against the liboqs 0.15.0 baseline. `gen_vectors.c` generates/verifies real signature

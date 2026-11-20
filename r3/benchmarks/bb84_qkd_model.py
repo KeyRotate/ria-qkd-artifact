@@ -9,7 +9,10 @@ Covers:
        f_rep=100 MHz, lambda=1550 nm, alpha=0.2 dB/km, eta_det=15%, Y0=1e-6,
        tau_d=50 ns, p_ap=0.02, f_ec=1.16, eps_sec=1e-10, eps_cor=1e-15.
   3. Dimension A: Simultaneous parallel DWDM quantum channels M in {1,2,4,8,16,32}
-     -> Mux insertion loss (1.5 dB for M>=2) + optical crosstalk & SRS leakage -> QBER & key rate.
+     -> Mux insertion loss (1.5 dB for M>=2) + optical crosstalk & SpRS/FWM leakage -> QBER & key rate.
+     Coexistence impairment mechanism after Wang et al., "Long-distance copropagation of quantum
+     key distribution and terabit classical optical data channels," Phys. Rev. A 95, 012301 (2017),
+     doi:10.1103/PhysRevA.95.012301. The per-channel values below are representative model parameters.
   4. Dimension B: Finite-key block size N in {1e6, 1e7, 1e8, 1e9, 1e10} & repetition rate f_rep in [100, 1000] MHz.
 """
 import json
