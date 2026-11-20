@@ -72,3 +72,9 @@ These are software-path measurements; they do not validate a physical HSM, QKD d
 field-deployed utility controller. The Cortex-M4 energy evidence (Sec. V-D) is from the
 earlier archived session (see artifact v1.8.1) and is unchanged in R3. Deployed credentials
 are withheld, so the archived Cortex-M4 measured session is not rebuildable.
+
+## Independent cross-verification (BouncyCastle + SPHINCS+ reference)
+`bc-verify/` records the independent verification of the SLH-DSA implementation:
+- BouncyCastle 1.87 (bcprov-jdk18on) bidirectional cross-check for SLH-DSA-SHA2-128s/128f/192s/256s (all pass).
+- SPHINCS+ reference (patched for w=4) verifies our SLH-DSA-SHA2-128-24 signature under the NIST SP 800-230 parameters.
+- `RESULTS.md` has the full table; `BCSlh.java` and `slh_cross.c` are the drivers.

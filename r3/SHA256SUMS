@@ -1,4 +1,7 @@
-72ff31484c1f45c4dd7c51848060b6193ce32f21cd28990cf1905d5443bd42d3  ./README.md
+fa2bf7ca289ff057bebc6b1df56f378d024094da4e993b2e57220d9d0ba6fc71  ./README.md
+ec92dd833a8f2cb39a9fc40ebfe76b2b1eb094a21a72c16cd35c43c1fb778a94  ./bc-verify/BCSlh.java
+12b2f767029c53b22fb33e88873871ff4a8f3d2679f95284c7bee3ea248b263e  ./bc-verify/RESULTS.md
+7451dd1325a448e1dfdbf124b9d086906c6fced1517e4fe38f5242ebb16529ec  ./bc-verify/slh_cross.c
 2aa0a27617376810bbb6a41247cf06d083e9dbcfc2bf6d2768528dde605014e9  ./benchmarks/bb84_qkd_model.py
 3f4f61deaf33b5581040cf15b25a1ed60ab6fbaf9f071bb89df4f7257c09c41f  ./benchmarks/bench_table_v.c
 e7a1ed41c3f62348a370e6114b5735ffbbe902db1b3a06025b4841fcbe86b4cc  ./benchmarks/bench_table_vi.c
