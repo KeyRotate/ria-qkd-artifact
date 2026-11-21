@@ -1,0 +1,47 @@
+{
+  "label": "rpi2b_armv7_900MHz",
+  "cycle_counter": "CLOCK_MONOTONIC_RAW_ns",
+  "n": 200,
+  "protocols": {
+    "KEMTLS_MutualAuth": {
+      "med_total_us": 5052.136, "mean_total_us": 5075.190, "std_total_us": 191.259, "iqr_total_us": 141.354,
+      "med_cycles": 5051614, "mean_cycles": 5074631,
+      "components_mean_us": {"verify": 0.000, "keygen": 1339.131, "encap": 1450.680, "decap": 1774.549, "sign": 0.000, "kdf_hash_mac": 503.352}
+    },
+    "RIA_QKD_Falcon": {
+      "med_total_us": 8097.500, "mean_total_us": 8018.030, "std_total_us": 366.561, "iqr_total_us": 598.333,
+      "med_cycles": 8096719, "mean_cycles": 8017277,
+      "components_mean_us": {"verify": 1185.752, "keygen": 1364.670, "encap": 1489.442, "decap": 3574.682, "sign": 0.000, "kdf_hash_mac": 392.046}
+    },
+    "RIA_QKD_L1": {
+      "med_total_us": 11166.458, "mean_total_us": 11217.476, "std_total_us": 386.643, "iqr_total_us": 612.656,
+      "med_cycles": 11165573, "mean_cycles": 11216654,
+      "components_mean_us": {"verify": 4497.369, "keygen": 1342.545, "encap": 1458.042, "decap": 3525.420, "sign": 0.000, "kdf_hash_mac": 382.970}
+    },
+    "RIA_QKD_L3": {
+      "med_total_us": 18331.355, "mean_total_us": 18644.108, "std_total_us": 1422.646, "iqr_total_us": 835.156,
+      "med_cycles": 18330625, "mean_cycles": 18643220,
+      "components_mean_us": {"verify": 7982.327, "keygen": 2271.010, "encap": 2343.249, "decap": 5617.903, "sign": 0.000, "kdf_hash_mac": 415.523}
+    },
+    "RIA_QKD_Hybrid": {
+      "med_total_us": 28152.344, "mean_total_us": 28102.295, "std_total_us": 1006.861, "iqr_total_us": 1587.083,
+      "med_cycles": 28151615, "mean_cycles": 28101596,
+      "components_mean_us": {"verify": 9934.488, "keygen": 3156.677, "encap": 4977.378, "decap": 9344.335, "sign": 0.000, "kdf_hash_mac": 671.203}
+    },
+    "mTLS_PQC": {
+      "med_total_us": 18936.719, "mean_total_us": 20882.890, "std_total_us": 6385.110, "iqr_total_us": 8514.011,
+      "med_cycles": 18935834, "mean_cycles": 20882072,
+      "components_mean_us": {"verify": 4702.010, "keygen": 1424.744, "encap": 0.000, "decap": 1861.426, "sign": 12352.822, "kdf_hash_mac": 526.045}
+    },
+    "ETSI_TS_104_146_Hybrid": {
+      "med_total_us": 20931.719, "mean_total_us": 22617.537, "std_total_us": 6333.923, "iqr_total_us": 7345.156,
+      "med_cycles": 20930886, "mean_cycles": 22616722,
+      "components_mean_us": {"verify": 4542.815, "keygen": 2196.872, "encap": 0.000, "decap": 3668.697, "sign": 11579.807, "kdf_hash_mac": 613.766}
+    },
+    "QKD_IPsec_IKEv2": {
+      "med_total_us": 22401.875, "mean_total_us": 24150.516, "std_total_us": 7230.975, "iqr_total_us": 8293.542,
+      "med_cycles": 22400938, "mean_cycles": 24149710,
+      "components_mean_us": {"verify": 4624.699, "keygen": 2261.751, "encap": 0.000, "decap": 3733.309, "sign": 12955.258, "kdf_hash_mac": 557.045}
+    }
+  }
+}
