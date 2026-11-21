@@ -1,0 +1,17 @@
+{
+  "label": "rpi",
+  "n": 2000,
+  "fixed_msg": true,
+  "sigs": {
+  "ML-DSA-65": {
+    "keygen": {"med_us": 7958.958, "mean_us": 7970.929, "iqr_us": 383.073, "std_us": 255.372, "n": 500},
+    "sign": {"med_us": 15843.854, "mean_us": 19617.501, "iqr_us": 12153.855, "std_us": 11966.764, "n": 2000},
+    "verify": {"med_us": 7569.739, "mean_us": 7704.910, "iqr_us": 577.812, "std_us": 696.139, "n": 2000}
+  },
+  "Ed25519+ML-DSA-65": {
+    "keygen": {"med_us": 8029.635, "mean_us": 8050.539, "iqr_us": 308.801, "std_us": 378.441, "n": 500},
+    "sign": {"med_us": 17338.906, "mean_us": 20947.362, "iqr_us": 12383.646, "std_us": 12048.305, "n": 2000},
+    "verify": {"med_us": 9694.792, "mean_us": 9875.685, "iqr_us": 855.209, "std_us": 814.987, "n": 2000}
+  }
+  }
+}
