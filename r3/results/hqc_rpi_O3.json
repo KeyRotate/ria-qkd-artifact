@@ -1,0 +1,26 @@
+{
+  "label": "rpi_armv7_O3",
+  "oqs_version": "0.15.0",
+  "cpu_model": "ARMv7 Processor rev 5 (v7l)",
+  "cycle_counter": "CLOCK_MONOTONIC_RAW_ns",
+  "kems": {
+    "HQC-128": {
+      "pk_bytes": 2249, "ct_bytes": 4433,
+      "keygen": {"med_us": 40573.438, "mean_us": 40591.780, "std_us": 471.874, "iqr_us": 325.312, "med_cycles": 40572083, "mean_cycles": 40590456, "n": 100},
+      "encap": {"med_us": 82483.281, "mean_us": 82690.917, "std_us": 846.549, "iqr_us": 192.397, "med_cycles": 82481406, "mean_cycles": 82688961, "n": 20},
+      "decap": {"med_us": 125352.969, "mean_us": 125809.258, "std_us": 2277.352, "iqr_us": 1163.750, "med_cycles": 125352084, "mean_cycles": 125808127, "n": 20}
+    },
+    "HQC-192": {
+      "pk_bytes": 4522, "ct_bytes": 8978,
+      "keygen": {"med_us": 122381.406, "mean_us": 122482.143, "std_us": 459.304, "iqr_us": 693.854, "med_cycles": 122379948, "mean_cycles": 122480802, "n": 20},
+      "encap": {"med_us": 247677.500, "mean_us": 247742.294, "std_us": 663.553, "iqr_us": 743.542, "med_cycles": 247675782, "mean_cycles": 247740609, "n": 20},
+      "decap": {"med_us": 374293.021, "mean_us": 376256.573, "std_us": 8459.089, "iqr_us": 2776.511, "med_cycles": 374291927, "mean_cycles": 376255411, "n": 20}
+    },
+    "HQC-256": {
+      "pk_bytes": 7245, "ct_bytes": 14421,
+      "keygen": {"med_us": 224568.646, "mean_us": 225432.529, "std_us": 3225.400, "iqr_us": 1000.886, "med_cycles": 224567188, "mean_cycles": 225430575, "n": 20},
+      "encap": {"med_us": 454570.364, "mean_us": 454533.958, "std_us": 215.073, "iqr_us": 210.052, "med_cycles": 454568594, "mean_cycles": 454532406, "n": 5},
+      "decap": {"med_us": 685475.625, "mean_us": 698940.771, "std_us": 23193.700, "iqr_us": 10562.395, "med_cycles": 685474323, "mean_cycles": 698939344, "n": 5}
+    }
+  }
+}

@@ -14,6 +14,11 @@ fi
 mkdir -p "$WORK"; cd "$WORK"
 [ -d liboqs-0.15.0 ] || tar -xzf "$OQS_TARBALL"
 
+# HQC: upstream pins hqc_clean at -O0 (a compiler-correctness workaround). We compile it at
+# -O3 and verify correctness against the liboqs KATs and 200 encap/decap round-trips
+# (benchmarks/hqc_verify.c); liboqs 0.15.0 ships no AVX2 HQC backend, so AVX2 == clean for HQC.
+sed -i 's/PRIVATE -O0/PRIVATE -O3/g' liboqs-0.15.0/src/kem/hqc/CMakeLists.txt
+
 # --- liboqs x86-64 AVX2 runtime-dispatch build (HQC enabled) ---
 cmake -S liboqs-0.15.0 -B build-avx2 -GNinja \
   -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$WORK/install-avx2" \

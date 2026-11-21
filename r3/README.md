@@ -64,8 +64,13 @@ bash build/build.sh          # builds liboqs (avx2/clean), compiles & runs bench
 python3 benchmarks/bb84_qkd_model.py
 python3 benchmarks/wire_accounting.py
 ```
-Note: HQC in liboqs 0.15.0 uses the upstream PQClean `hqc_clean` backend compiled at `-O0`
-by upstream CMake; reported HQC latencies reflect that build (documented in Table V note).
+Note: HQC in liboqs 0.15.0 ships only the upstream PQClean `hqc_clean` backend (no AVX2
+assembly). Upstream pins it at `-O0`; we compile at `-O3` and verify against the liboqs KATs
+and 200 encap/decap round-trips (`benchmarks/hqc_verify.c`, results in `results/hqc_*_O3.json`).
+The AVX2 and clean-C columns therefore coincide for HQC (documented in the Table V note).
+The hybrid KEM combiner in `bench_table_vi.c` uses the standard ciphertext-binding dual-PRF
+form `Extract(K_cl, K_pq || c_pq || c_cl)` (Giacon-Heuer-Poettering); this refinement changes
+the hybrid KDF input only and leaves the reported client-path medians within benchmark variance.
 
 ## Provenance / scope
 These are software-path measurements; they do not validate a physical HSM, QKD device, or

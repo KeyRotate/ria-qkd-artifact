@@ -1,0 +1,26 @@
+{
+  "label": "nuc_avx2_O3",
+  "oqs_version": "0.15.0",
+  "cpu_model": "Intel(R) Core(TM) i7-8559U CPU @ 2.70GHz",
+  "cycle_counter": "rdtscp",
+  "kems": {
+    "HQC-128": {
+      "pk_bytes": 2249, "ct_bytes": 4433,
+      "keygen": {"med_us": 2414.553, "mean_us": 2491.998, "std_us": 292.153, "iqr_us": 34.975, "med_cycles": 6548025, "mean_cycles": 6757926, "n": 500},
+      "encap": {"med_us": 4898.016, "mean_us": 5017.391, "std_us": 437.107, "iqr_us": 148.392, "med_cycles": 13282949, "mean_cycles": 13606303, "n": 100},
+      "decap": {"med_us": 7498.059, "mean_us": 8001.888, "std_us": 1527.898, "iqr_us": 227.442, "med_cycles": 20334003, "mean_cycles": 21700020, "n": 100}
+    },
+    "HQC-192": {
+      "pk_bytes": 4522, "ct_bytes": 8978,
+      "keygen": {"med_us": 7427.386, "mean_us": 7715.404, "std_us": 1072.274, "iqr_us": 167.952, "med_cycles": 20142242, "mean_cycles": 20923178, "n": 100},
+      "encap": {"med_us": 15114.050, "mean_us": 15246.347, "std_us": 655.698, "iqr_us": 346.179, "med_cycles": 40987221, "mean_cycles": 41346477, "n": 100},
+      "decap": {"med_us": 22635.403, "mean_us": 24240.494, "std_us": 4382.424, "iqr_us": 963.954, "med_cycles": 61385026, "mean_cycles": 65738502, "n": 100}
+    },
+    "HQC-256": {
+      "pk_bytes": 7245, "ct_bytes": 14421,
+      "keygen": {"med_us": 13485.425, "mean_us": 13530.259, "std_us": 133.014, "iqr_us": 151.473, "med_cycles": 36571501, "mean_cycles": 36693062, "n": 100},
+      "encap": {"med_us": 27329.890, "mean_us": 28296.592, "std_us": 3826.684, "iqr_us": 478.799, "med_cycles": 74117636, "mean_cycles": 76738500, "n": 100},
+      "decap": {"med_us": 41147.966, "mean_us": 41400.075, "std_us": 1113.135, "iqr_us": 378.228, "med_cycles": 111591913, "mean_cycles": 112275541, "n": 20}
+    }
+  }
+}

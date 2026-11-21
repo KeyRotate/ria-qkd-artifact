@@ -286,10 +286,18 @@ static void step_ria_hybrid(AllCtx *c, Sample *s) {
 
     t0 = now_ns();
     do_sha256(c->tr_buf, 512, tr0);
-    uint8_t pair[64];
-    memcpy(pair, k1, 32); memcpy(pair+32, x1, 32); do_hkdf_extract(c->ak, pair, 64, comb);
-    memcpy(pair, k2, 32); memcpy(pair+32, x2, 32); do_hkdf_extract(c->ak, pair, 64, comb+32);
-    memcpy(pair, k3, 32); memcpy(pair+32, x3, 32); do_hkdf_extract(c->ak, pair, 64, comb+64);
+    /* Dual-PRF KEM combiner with ciphertext binding (Giacon-Heuer-Poettering):
+       K_hyb,m = HKDF.Extract(salt=K_cl,m, IKM=K_pq,m || c_pq,m || c_cl,m),
+       then PRK_sess = HKDF.Extract(AK_i, K_hyb,1 || K_hyb,2 || K_hyb,3). */
+    size_t ctlen = c->k768->length_ciphertext;
+    uint8_t ikm[32 + 1088 + 32];
+    size_t ilen = 32 + ctlen + 32;
+    memcpy(ikm, k1, 32); memcpy(ikm+32, c->k768_ct1, ctlen); memcpy(ikm+32+ctlen, c->x_peer_pk, 32);
+    do_hkdf_extract(x1, ikm, ilen, comb);
+    memcpy(ikm, k2, 32); memcpy(ikm+32, c->k768_ct2, ctlen); memcpy(ikm+32+ctlen, x_epk, 32);
+    do_hkdf_extract(x2, ikm, ilen, comb+32);
+    memcpy(ikm, k3, 32); memcpy(ikm+32, c3, ctlen); memcpy(ikm+32+ctlen, x_epk3, 32);
+    do_hkdf_extract(x3, ikm, ilen, comb+64);
     do_hkdf_extract(c->ak, comb, 96, prk);
     do_hkdf_expand(prk, (const uint8_t*)"finished", 8, kfin);
     do_hkdf_expand(prk, (const uint8_t*)"session", 7, ms);
