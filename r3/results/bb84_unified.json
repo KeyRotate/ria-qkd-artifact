@@ -1,0 +1,248 @@
+{
+  "model": "unified (identical channel/detector/decoy parameters for both columns)",
+  "params": {
+    "f_rep": 100000000.0,
+    "lam": 1.55e-06,
+    "alpha": 0.2,
+    "mu": 0.5,
+    "nu": 0.1,
+    "om": 0.0,
+    "p_mu": 0.7,
+    "p_nu": 0.2,
+    "p_om": 0.1,
+    "p_Z": 0.8,
+    "eta_det": 0.15,
+    "y0": 1e-06,
+    "tau_d": 5e-08,
+    "p_ap": 0.02,
+    "f_ec": 1.16,
+    "eps_sec": 9.9e-11,
+    "eps_cor": 1e-15,
+    "mux_loss_db": 1.5,
+    "xtalk_srs": 2e-05
+  },
+  "table_vii": [
+    {
+      "L_km": 20,
+      "edet_pct": 1.0,
+      "qber_pct": 1.17,
+      "asym_kbps": 563.31,
+      "fin_kbps": 475.69,
+      "pulses_asym": 45446,
+      "pulses_fin": 53817,
+      "dev_asym": 4.5,
+      "dev_fin": 5.4
+    },
+    {
+      "L_km": 50,
+      "edet_pct": 1.0,
+      "qber_pct": 1.18,
+      "asym_kbps": 151.4,
+      "fin_kbps": 107.26,
+      "pulses_asym": 169093,
+      "pulses_fin": 238681,
+      "dev_asym": 16.9,
+      "dev_fin": 23.9
+    },
+    {
+      "L_km": 50,
+      "edet_pct": 2.0,
+      "qber_pct": 2.18,
+      "asym_kbps": 114.32,
+      "fin_kbps": 71.04,
+      "pulses_asym": 223932,
+      "pulses_fin": 360365,
+      "dev_asym": 22.4,
+      "dev_fin": 36.0
+    },
+    {
+      "L_km": 50,
+      "edet_pct": 3.0,
+      "qber_pct": 3.18,
+      "asym_kbps": 81.7,
+      "fin_kbps": 39.04,
+      "pulses_asym": 313327,
+      "pulses_fin": 655683,
+      "dev_asym": 31.3,
+      "dev_fin": 65.6
+    },
+    {
+      "L_km": 50,
+      "edet_pct": 5.0,
+      "qber_pct": 5.17,
+      "asym_kbps": 24.85,
+      "fin_kbps": 0.0,
+      "pulses_asym": 1030213,
+      "pulses_fin": null,
+      "dev_asym": 103.0,
+      "dev_fin": 0.0
+    },
+    {
+      "L_km": 80,
+      "edet_pct": 2.0,
+      "qber_pct": 2.2,
+      "asym_kbps": 29.08,
+      "fin_kbps": 8.86,
+      "pulses_asym": 880467,
+      "pulses_fin": 2890845,
+      "dev_asym": 88.0,
+      "dev_fin": 289.1
+    },
+    {
+      "L_km": 100,
+      "edet_pct": 2.0,
+      "qber_pct": 2.24,
+      "asym_kbps": 11.5,
+      "fin_kbps": 0.0,
+      "pulses_asym": 2225312,
+      "pulses_fin": null,
+      "dev_asym": 222.5,
+      "dev_fin": 0.0
+    }
+  ],
+  "dwdm_50km": [
+    {
+      "M": 1,
+      "qber_pct": 2.18,
+      "asym_agg": 114.32,
+      "fin_agg": 71.04
+    },
+    {
+      "M": 2,
+      "qber_pct": 2.36,
+      "asym_agg": 155.58,
+      "fin_agg": 69.45
+    },
+    {
+      "M": 4,
+      "qber_pct": 2.72,
+      "asym_agg": 283.37,
+      "fin_agg": 85.9
+    },
+    {
+      "M": 8,
+      "qber_pct": 3.42,
+      "asym_agg": 463.85,
+      "fin_agg": 1.12
+    },
+    {
+      "M": 16,
+      "qber_pct": 4.75,
+      "asym_agg": 563.91,
+      "fin_agg": 0.0
+    },
+    {
+      "M": 32,
+      "qber_pct": 7.2,
+      "asym_agg": 0.0,
+      "fin_agg": 0.0
+    }
+  ],
+  "dwdm_80km": [
+    {
+      "M": 1,
+      "qber_pct": 2.2,
+      "asym_agg": 29.08,
+      "fin_agg": 8.86
+    },
+    {
+      "M": 2,
+      "qber_pct": 2.92,
+      "asym_agg": 34.11,
+      "fin_agg": 0.0
+    },
+    {
+      "M": 4,
+      "qber_pct": 4.27,
+      "asym_agg": 43.82,
+      "fin_agg": 0.0
+    },
+    {
+      "M": 8,
+      "qber_pct": 6.76,
+      "asym_agg": 7.43,
+      "fin_agg": 0.0
+    },
+    {
+      "M": 16,
+      "qber_pct": 11.0,
+      "asym_agg": 0.0,
+      "fin_agg": 0.0
+    },
+    {
+      "M": 32,
+      "qber_pct": 17.39,
+      "asym_agg": 0.0,
+      "fin_agg": 0.0
+    }
+  ],
+  "block_scaling_50km": [
+    {
+      "N": 1000000,
+      "kbps": 0.0
+    },
+    {
+      "N": 10000000,
+      "kbps": 0.0
+    },
+    {
+      "N": 100000000,
+      "kbps": 0.0
+    },
+    {
+      "N": 1000000000,
+      "kbps": 71.04
+    },
+    {
+      "N": 10000000000,
+      "kbps": 100.08
+    }
+  ],
+  "rep_rate_50km": [
+    {
+      "mhz": 100,
+      "qber_pct": 2.18,
+      "gamma_dt": 0.9731,
+      "kbps": 71.04
+    },
+    {
+      "mhz": 250,
+      "qber_pct": 2.46,
+      "gamma_dt": 0.9353,
+      "kbps": 126.99
+    },
+    {
+      "mhz": 500,
+      "qber_pct": 2.92,
+      "gamma_dt": 0.8784,
+      "kbps": 150.11
+    },
+    {
+      "mhz": 1000,
+      "qber_pct": 4.04,
+      "gamma_dt": 0.7832,
+      "kbps": 0.0
+    }
+  ],
+  "worked_example_50km_2pct": {
+    "L_km": 50,
+    "M": 1,
+    "N": 1000000000,
+    "f_rep": 100000000.0,
+    "asymptotic": false,
+    "qber_pct": 2.18,
+    "per_ch_kbps": 71.04,
+    "agg_kbps": 71.04,
+    "gamma_dt": 0.9731,
+    "pulses_per_256b": 360365,
+    "intermediates": {
+      "n_Z": 3461360,
+      "s_Z0": 10054,
+      "s_Z1": 2028489,
+      "phi_Z_pct": 6.533
+    },
+    "block_s": 10.0,
+    "keys_per_block": 2774,
+    "sec_bits": 710400.0
+  }
+}

@@ -84,3 +84,31 @@ python3 "$HERE/benchmarks/wire_accounting.py"
 #   taskset -c 0 ./bench_table_vi rpi2b_armv7 20 200 > results/rpi_table_vi.json
 #   taskset -c 0 ./bench_table_v  rpi2b_armv7        > results/rpi_table_v.json
 echo "DONE"
+
+# =====================================================================
+# artifact-v2.1 additions (manuscript R3 follow-up, 2026-11-27)
+# =====================================================================
+# (a) KEMTLS true mutual-auth client path (1 KeyGen + 2 Decap + 1 Encap + KDF/MAC).
+#     NUC:
+#       gcc -O3 -march=native benchmarks/bench_kemtls_mutual.c \
+#         -Iinstall-avx2/include -Linstall-avx2/lib -Wl,-rpath,$PWD/install-avx2/lib \
+#         -loqs -lcrypto -lm -o bench_kemtls_mutual_avx2
+#       cpupower frequency-set -g performance; echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
+#       taskset -c 0 ./bench_kemtls_mutual_avx2 nuc_kemtls_mutual 200 1000 > results/nuc_kemtls_mutual.json
+#       echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo; cpupower frequency-set -g powersave
+#     RPi 2B (built natively, governor performance, 900 MHz):
+#       gcc -O3 -mfpu=neon -mfloat-abi=hard bench_kemtls_mutual.c \
+#         -Iinstall/include -Linstall/lib -Wl,-rpath,/opt/papers/ria-qkd-r3/install/lib \
+#         -loqs -lcrypto -lm -o bench_kemtls_mutual
+#       taskset -c 0 ./bench_kemtls_mutual rpi2b_kemtls_mutual 20 200 > results_rpi_kemtls_mutual.json
+#     Published values (Table VI / Fig. 4): NUC median 81.7 us (mean 84.8 us, decap term
+#     29.1 us = two decapsulations); RPi 2B median 6.55 ms, mean 7.16 ms.
+#     The three-primitive server-auth lower bound (66.5 us / 4.92 ms) is kept as a footnote only.
+#
+# (b) Unified decoy-state BB84 model (single channel/detector/decoy parameter set,
+#     one observed QBER for both the asymptotic and the finite-key column):
+#       python3 benchmarks/bb84_model_v21.py     # asserts every Table VII row and every
+#                                                # Fig. 5 coordinate used by the manuscript,
+#                                                # then writes results/bb84_unified.json
+#     bb84_qkd_model.py is the earlier R3 script; its separate gllp_asymptotic() used an
+#     unbiased-basis, no-dead-time model and is retained only for provenance (superseded).

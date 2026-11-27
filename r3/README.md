@@ -1,4 +1,4 @@
-# RIA-QKD Artifact v2.0 (Revision R3)
+# RIA-QKD Artifact v2.1 (Revision R3)
 
 Companion artifact for:
 **RIA-QKD: A Risk-Isolated, Asymmetric Authenticated Key Distribution Architecture for Hybrid QKD-PQC IoT Networks**
@@ -8,6 +8,26 @@ This bundle contains everything needed to reproduce the R3 empirical results rep
 Tables II, III, V, VI, VII and Figures 4 and 5: the pure-C benchmark sources, the raw JSON
 measurements, the NIST SP 800-230 implementation and verified test vectors, and the
 decoy-state BB84 simulator.
+
+## What changed in v2.1 (R3 follow-up, 2026-11-27)
+1. **Unified decoy-state BB84 model** (`benchmarks/bb84_model_v21.py`). The asymptotic and
+   finite-key columns of Table VII are now produced by one code path with one channel,
+   detector and decoy parameter set, so each operating point has a **single observed QBER**
+   that already includes afterpulsing (p_ap = 2%) and dead time (tau_d = 50 ns); the
+   asymptotic column is the large-N limit of the same expression. The manuscript's
+   "Pulses per 256-bit key" and "Distill" columns were removed and those quantities are
+   derived in the text, together with a step-by-step 50 km worked example. The script
+   asserts every Table VII row and every Figure 5 coordinate used by the manuscript.
+2. **Finite-key bound attribution corrected.** The composable decoy-state analysis is that
+   of Lim et al. (PRA 89, 022307, 2014), whose deviation term is Hoeffding-type; the
+   fluctuations are evaluated here with multiplicative Chernoff bounds as given by
+   Zhang, Zhao, Razavi and Ma (PRA 95, 012333, 2017), reference [66] in the manuscript.
+3. **KEMTLS row measured as true mutual authentication.** `bench_kemtls_mutual.c` implements
+   the mutual-auth client path (1 KeyGen + 2 Decap + 1 Encap + KDF/MAC); the earlier
+   single-decapsulation figure is kept only as the server-auth lower bound. Results:
+   `results/nuc_kemtls_mutual.json` (median 81.7 us, mean 84.8 us) and
+   `results/rpi_kemtls_mutual.json` (median 6.55 ms, mean 7.16 ms). Table VI and Figure 4
+   now use this row, so wire bytes (3,000 B) and timings describe the same configuration.
 
 ## Platforms
 - **Gateway proxy (NUC):** Intel NUC8i7BEH, Core i7-8559U (x86-64, AVX2), Ubuntu 24.04,
